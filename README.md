@@ -27,24 +27,17 @@ Cloud-based personal finance intelligence platform featuring exact integer-arith
 
 ## Contents
 
-1. [Overview](#overview)
-2. [Screenshots](#screenshots)
-3. [Key features](#key-features)
-4. [Technology stack](#technology-stack)
-5. [System architecture](#system-architecture)
-6. [Application workflow](#application-workflow)
-7. [Data model](#data-model)
-8. [AWS services](#aws-services)
-9. [Security and privacy](#security-and-privacy)
-10. [Local setup](#local-setup)
-11. [Testing](#testing)
-12. [AWS deployment](#aws-deployment)
-13. [Cost considerations](#cost-considerations)
-14. [Known limitations](#known-limitations)
-15. [Project structure](#project-structure)
-16. [Documentation and evidence](#documentation-and-evidence)
-17. [Author and project information](#author-and-project-information)
-18. [License](#license)
+| Section (1–9) | Section (10–18) |
+| :--- | :--- |
+| 1. [Overview](#overview) | 10. [Local setup](#local-setup) |
+| 2. [Screenshots](#screenshots) | 11. [Testing](#testing) |
+| 3. [Key features](#key-features) | 12. [AWS deployment](#aws-deployment) |
+| 4. [Technology stack](#technology-stack) | 13. [Cost considerations](#cost-considerations) |
+| 5. [System architecture](#system-architecture) | 14. [Known limitations](#known-limitations) |
+| 6. [Application workflow](#application-workflow) | 15. [Project structure](#project-structure) |
+| 7. [Data model](#data-model) | 16. [Documentation and evidence](#documentation-and-evidence) |
+| 8. [AWS services](#aws-services) | 17. [Author and project information](#author-and-project-information) |
+| 9. [Security and privacy](#security-and-privacy) | 18. [License](#license) |
 
 ---
 
