@@ -38,5 +38,10 @@ Thumbs.db
 .claude/settings.local.json
 infra/build/
 
-# Owner AWS Console captures: unmasked originals (full account ID). Masked report copies live in docs/report_assets/aws_console/.
+# Temporary and log files
+*.log
+*.tmp
+~$*
+
+# Owner AWS Console captures: unmasked originals (full account ID). Masked copies live in docs/assets/aws_console/.
 docs/evidence/manual/aws-console/Screenshot*.png
