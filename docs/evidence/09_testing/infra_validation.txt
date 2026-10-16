@@ -1,0 +1,6 @@
+# 2026-10-16T12:48:54+05:30
+$ sam validate --lint --profile finsight --region ap-south-1
+D:\Aakar\College\CAD Project\infra\template.yaml is a valid SAM Template
+exit=0
+$ cfn-lint template.yaml
+exit=0

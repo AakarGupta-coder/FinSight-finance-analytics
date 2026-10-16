@@ -1,0 +1,151 @@
+{
+ "ranAt": "2026-10-16T06:43:00.355Z",
+ "shots": [
+  {
+   "name": "local_landing.png",
+   "at": "2026-10-16T06:41:51.899Z"
+  },
+  {
+   "name": "local_registration.png",
+   "at": "2026-10-16T06:41:54.751Z"
+  },
+  {
+   "name": "local_login.png",
+   "at": "2026-10-16T06:41:57.545Z"
+  },
+  {
+   "name": "04_animations/anim_form_validation_message.png",
+   "at": "2026-10-16T06:41:57.866Z"
+  },
+  {
+   "name": "04_animations/anim_dashboard_entrance_midframe.png",
+   "at": "2026-10-16T06:41:59.234Z"
+  },
+  {
+   "name": "local_dashboard.png",
+   "at": "2026-10-16T06:42:01.904Z"
+  },
+  {
+   "name": "04_animations/anim_page_transition_midframe.png",
+   "at": "2026-10-16T06:42:02.181Z"
+  },
+  {
+   "name": "local_budget_management.png",
+   "at": "2026-10-16T06:42:04.607Z"
+  },
+  {
+   "name": "04_animations/anim_budget_progress_settled.png",
+   "at": "2026-10-16T06:42:04.779Z"
+  },
+  {
+   "name": "local_expense_management.png",
+   "at": "2026-10-16T06:42:07.232Z"
+  },
+  {
+   "name": "04_animations/anim_sidebar_active_hover_focus.png",
+   "at": "2026-10-16T06:42:07.735Z"
+  },
+  {
+   "name": "04_animations/anim_modal_opening_midframe.png",
+   "at": "2026-10-16T06:42:08.257Z"
+  },
+  {
+   "name": "02_local_application/local_expense_detail_dialog.png",
+   "at": "2026-10-16T06:42:09.045Z"
+  },
+  {
+   "name": "02_local_application/local_expense_filtering.png",
+   "at": "2026-10-16T06:42:12.677Z"
+  },
+  {
+   "name": "04_animations/anim_expense_form_validation.png",
+   "at": "2026-10-16T06:42:15.056Z"
+  },
+  {
+   "name": "local_expense_creation.png",
+   "at": "2026-10-16T06:42:15.527Z"
+  },
+  {
+   "name": "local_financial_analytics.png",
+   "at": "2026-10-16T06:42:19.574Z"
+  },
+  {
+   "name": "local_financial_intelligence.png",
+   "at": "2026-10-16T06:42:22.618Z"
+  },
+  {
+   "name": "local_anomaly_detection.png",
+   "at": "2026-10-16T06:42:25.661Z"
+  },
+  {
+   "name": "local_receipt_scanner.png",
+   "at": "2026-10-16T06:42:28.358Z"
+  },
+  {
+   "name": "04_animations/anim_receipt_processing_state.png",
+   "at": "2026-10-16T06:42:29.340Z"
+  },
+  {
+   "name": "local_receipt_ocr_review.png",
+   "at": "2026-10-16T06:42:31.226Z"
+  },
+  {
+   "name": "local_whatif_simulator.png",
+   "at": "2026-10-16T06:42:35.515Z"
+  },
+  {
+   "name": "04_animations/anim_assistant_typing.png",
+   "at": "2026-10-16T06:42:38.040Z"
+  },
+  {
+   "name": "local_finance_assistant.png",
+   "at": "2026-10-16T06:42:38.833Z"
+  },
+  {
+   "name": "local_savings_goals.png",
+   "at": "2026-10-16T06:42:41.850Z"
+  },
+  {
+   "name": "04_animations/anim_savings_progress_settled.png",
+   "at": "2026-10-16T06:42:42.037Z"
+  },
+  {
+   "name": "local_profile.png",
+   "at": "2026-10-16T06:42:44.426Z"
+  },
+  {
+   "name": "local_settings.png",
+   "at": "2026-10-16T06:42:47.359Z"
+  },
+  {
+   "name": "03_frontend_design/design_dashboard_dark.png",
+   "at": "2026-10-16T06:42:51.354Z"
+  },
+  {
+   "name": "04_animations/anim_theme_switch_midframe.png",
+   "at": "2026-10-16T06:42:51.902Z"
+  },
+  {
+   "name": "03_frontend_design/design_dashboard_light.png",
+   "at": "2026-10-16T06:42:53.335Z"
+  },
+  {
+   "name": "03_frontend_design/design_transactions_light.png",
+   "at": "2026-10-16T06:42:56.069Z"
+  },
+  {
+   "name": "03_frontend_design/design_mobile_dashboard.png",
+   "at": "2026-10-16T06:42:59.458Z"
+  },
+  {
+   "name": "04_animations/anim_mobile_drawer_opening_midframe.png",
+   "at": "2026-10-16T06:42:59.729Z"
+  },
+  {
+   "name": "03_frontend_design/design_mobile_navigation.png",
+   "at": "2026-10-16T06:43:00.355Z"
+  }
+ ],
+ "consoleErrors": [],
+ "failedRequests": []
+}

@@ -1,0 +1,29 @@
+# Baseline backend tests — 2026-10-16T12:02:09+05:30
+$ cd backend; .venv/Scripts/python.exe -m pytest -v
+============================= test session starts =============================
+platform win32 -- Python 3.14.0, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\Aakar\College\CAD Project\backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collected 114 items
+
+tests\test_anomalies.py .............                                    [ 11%]
+tests\test_assistant.py ...................                              [ 28%]
+tests\test_budgets.py ..........                                         [ 36%]
+tests\test_dynamodb_and_s3.py ...                                        [ 39%]
+tests\test_expenses.py ......                                            [ 44%]
+tests\test_insights.py ........                                          [ 51%]
+tests\test_lambda_handlers.py .                                          [ 52%]
+tests\test_money_and_dates.py .......                                    [ 58%]
+tests\test_receipts.py ........................                          [ 79%]
+tests\test_security.py ...........                                       [ 89%]
+tests\test_simulator_and_goals.py ............                           [100%]
+
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\Aakar\College\CAD Project\backend\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 114 passed, 1 warning in 15.32s =======================

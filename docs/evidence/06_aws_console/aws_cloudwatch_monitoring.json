@@ -1,0 +1,143 @@
+{
+ "alarms": [
+  {
+   "AlarmName": "finance-intelligence-prod-ApiServerErrorsAlarm-KH5Ry8RCau8w",
+   "AlarmArn": "arn:aws:cloudwatch:ap-south-1:9672****3724:alarm:finance-intelligence-prod-ApiServerErrorsAlarm-KH5Ry8RCau8w",
+   "AlarmDescription": "API is returning 5xx errors.",
+   "AlarmConfigurationUpdatedTimestamp": "2026-10-16 13:29:50.177000+05:30",
+   "ActionsEnabled": true,
+   "OKActions": [],
+   "AlarmActions": [],
+   "InsufficientDataActions": [],
+   "StateValue": "OK",
+   "StateReason": "Threshold Crossed: 1 datapoint [1.0 (16/10/26 07:56:00)] was not greater than or equal to the threshold (5.0).",
+   "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-16T08:01:26.179+0000\",\"startDate\":\"2026-10-16T07:56:00.000+0000\",\"statistic\":\"Sum\",\"period\":300,\"recentDatapoints\":[1.0],\"threshold\":5.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-16T07:56:00.000+0000\",\"sampleCount\":3.0,\"value\":1.0}]}",
+   "StateUpdatedTimestamp": "2026-10-16 13:31:26.180000+05:30",
+   "MetricName": "5xx",
+   "Namespace": "AWS/ApiGateway",
+   "Statistic": "Sum",
+   "Dimensions": [
+    {
+     "Name": "ApiId",
+     "Value": "zkht2b4ib3"
+    }
+   ],
+   "Period": 300,
+   "EvaluationPeriods": 1,
+   "Threshold": 5.0,
+   "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+   "TreatMissingData": "notBreaching",
+   "StateTransitionedTimestamp": "2026-10-16 13:31:26.180000+05:30"
+  }
+ ],
+ "log_groups": [
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m",
+   "creationTime": 1792137584137,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL",
+   "creationTime": 1792137583736,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN",
+   "creationTime": 1792137583828,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD",
+   "creationTime": 1792137583855,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh",
+   "creationTime": 1792137583552,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu",
+   "creationTime": 1792137583667,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF",
+   "creationTime": 1792137583628,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB",
+   "creationTime": 1792137584029,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  },
+  {
+   "logGroupName": "/aws/lambda/finance-intelligence-prod-WebFunction-uBmtaQvY7VVV",
+   "creationTime": 1792137547402,
+   "retentionInDays": 14,
+   "metricFilterCount": 0,
+   "arn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-WebFunction-uBmtaQvY7VVV:*",
+   "storedBytes": 0,
+   "logGroupClass": "STANDARD",
+   "logGroupArn": "arn:aws:logs:ap-south-1:9672****3724:log-group:/aws/lambda/finance-intelligence-prod-WebFunction-uBmtaQvY7VVV",
+   "deletionProtectionEnabled": false,
+   "bearerTokenAuthenticationEnabled": false
+  }
+ ]
+}

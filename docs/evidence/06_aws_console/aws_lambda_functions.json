@@ -1,0 +1,582 @@
+[
+ {
+  "ResponseMetadata": {
+   "RequestId": "d81c3402-35b8-4fce-80b4-2327299f4720",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:48 GMT",
+    "content-type": "application/json",
+    "content-length": "1956",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "d81c3402-35b8-4fce-80b4-2327299f4720"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-AccountFunctionRole-KkMlhB7auEqi",
+  "Handler": "app.handlers.account.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 30,
+  "MemorySize": 512,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "6015f509-8f3d-404d-ae63-7041a1829c3f",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "ca83a7e6-a243-4d02-94bd-7765d3f910dd",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:49 GMT",
+    "content-type": "application/json",
+    "content-length": "1966",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "ca83a7e6-a243-4d02-94bd-7765d3f910dd"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-AnalyticsFunctionRole-FVBlGnxBU1Km",
+  "Handler": "app.handlers.analytics.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 15,
+  "MemorySize": 768,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "7f931042-c8a2-4364-8292-da1fcd7e0610",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "9b7d9d97-827a-4d1d-8303-e206e484fe6f",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:49 GMT",
+    "content-type": "application/json",
+    "content-length": "1966",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "9b7d9d97-827a-4d1d-8303-e206e484fe6f"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-AnomaliesFunctionRole-jXRnhqAZ6ZXU",
+  "Handler": "app.handlers.anomalies.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 30,
+  "MemorySize": 512,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "7c8a4b35-8daf-4eac-98cd-b5454d58f186",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "cdf10f69-4467-43c9-9f33-2dbdfe7d8f6a",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:49 GMT",
+    "content-type": "application/json",
+    "content-length": "1966",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "cdf10f69-4467-43c9-9f33-2dbdfe7d8f6a"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-AssistantFunctionRole-14seI58IOe8K",
+  "Handler": "app.handlers.assistant.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 15,
+  "MemorySize": 512,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "ea2cec0c-d6d8-4ef7-b2f3-c16653704eaf",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "e87dfdad-4de7-4d51-bcdb-b8600723b53c",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:50 GMT",
+    "content-type": "application/json",
+    "content-length": "1956",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "e87dfdad-4de7-4d51-bcdb-b8600723b53c"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-BudgetsFunctionRole-EnkjwgFjstHk",
+  "Handler": "app.handlers.budgets.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 15,
+  "MemorySize": 512,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "137db750-8521-4bb8-9ed5-0922e7f0cc82",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "0484c391-94c0-40ab-b0ce-5ad50c96a6e3",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:50 GMT",
+    "content-type": "application/json",
+    "content-length": "1961",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "0484c391-94c0-40ab-b0ce-5ad50c96a6e3"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-ExpensesFunctionRole-L9KhV75QIx9i",
+  "Handler": "app.handlers.expenses.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 15,
+  "MemorySize": 512,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "9c7f3ab8-057c-45aa-9774-7d8ec39fc049",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "6ba01870-1186-44a3-b2a1-6d27634be624",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:50 GMT",
+    "content-type": "application/json",
+    "content-length": "1961",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "6ba01870-1186-44a3-b2a1-6d27634be624"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-PlanningFunctionRole-JaL5Jkqpu9k3",
+  "Handler": "app.handlers.planning.handler",
+  "CodeSize": 15739081,
+  "Description": "",
+  "Timeout": 15,
+  "MemorySize": 512,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "DSLW8j/YSM91PbOImFpIFUD8p4SUhiLODE7Ud8CbHGg=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "88dd61c7-87b4-4148-829f-ac67c1234e17",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "8001bb77-3f77-4032-bcf9-8d1611acc401",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:50 GMT",
+    "content-type": "application/json",
+    "content-length": "1810",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "8001bb77-3f77-4032-bcf9-8d1611acc401"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-ReceiptsFunctionRole-tra3ZvQrK5GS",
+  "CodeSize": 0,
+  "Description": "",
+  "Timeout": 60,
+  "MemorySize": 1024,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "b3936c458ff62f8d0eeb3cb8435532a0773addef0f542be5c1dc550802d0036e",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "1f660382-138b-4a1d-b033-7c3b5c87e22d",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Image",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB"
+  }
+ },
+ {
+  "ResponseMetadata": {
+   "RequestId": "40e91371-de5f-49c0-b419-bdede1696666",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:51 GMT",
+    "content-type": "application/json",
+    "content-length": "1925",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "40e91371-de5f-49c0-b419-bdede1696666"
+   },
+   "RetryAttempts": 0
+  },
+  "FunctionName": "finance-intelligence-prod-WebFunction-uBmtaQvY7VVV",
+  "FunctionArn": "arn:aws:lambda:ap-south-1:9672****3724:function:finance-intelligence-prod-WebFunction-uBmtaQvY7VVV",
+  "Runtime": "python3.13",
+  "Role": "arn:aws:iam::9672****3724:role/finance-intelligence-prod-WebFunctionRole-UbAVptD6N46W",
+  "Handler": "handler.handler",
+  "CodeSize": 644612,
+  "Description": "",
+  "Timeout": 10,
+  "MemorySize": 256,
+  "LastModified": "2026-10-16T09:49:47.000+0000",
+  "CodeSha256": "I4Xc+B3Ivn1KCGzDsdMoMmr9yiNnsRa6MUfj/vhMuXM=",
+  "Version": "$LATEST",
+  "Environment": {
+   "Variables": {
+    "RECEIPT_BUCKET": "finance-intelligence-receipts-9672****3724-prod",
+    "AUTH_MODE": "cognito",
+    "RECEIPT_STORAGE": "s3",
+    "APP_ENV": "production",
+    "DYNAMODB_TABLE": "finance-intelligence-prod",
+    "ALLOW_DEMO_DATA": "false",
+    "COGNITO_APP_CLIENT_ID": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+    "CORS_ORIGINS": "https://same-origin.invalid",
+    "DATA_BACKEND": "dynamodb",
+    "COGNITO_USER_POOL_ID": "ap-south-1_qp3zLx5jI",
+    "LOG_LEVEL": "INFO"
+   }
+  },
+  "TracingConfig": {
+   "Mode": "PassThrough"
+  },
+  "RevisionId": "58732672-846d-424a-b66e-92bf83f1bbdf",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+   "x86_64"
+  ],
+  "EphemeralStorage": {
+   "Size": 512
+  },
+  "SnapStart": {
+   "ApplyOn": "None",
+   "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+   "RuntimeVersionArn": "arn:aws:lambda:ap-south-1::runtime:a0627e8616c4eaf447133f427c7419e5ce3a39ea2bc648ccb6d03d5b7f4d96e7"
+  },
+  "LoggingConfig": {
+   "LogFormat": "Text",
+   "LogGroup": "/aws/lambda/finance-intelligence-prod-WebFunction-uBmtaQvY7VVV"
+  }
+ }
+]

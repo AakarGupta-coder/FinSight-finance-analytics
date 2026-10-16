@@ -1,0 +1,148 @@
+
+	Managed S3 bucket: aws-sam-cli-managed-default-samclisourcebucket-6xbdhaxfekef
+	Auto resolution of buckets can be turned off by setting resolve_s3=False
+	To use a specific S3 bucket, set --s3-bucket=<bucket_name>
+	Above settings can be stored in samconfig.toml
+
+	File with same data already exists at 3ddb5e767a24ce7493d147d52b7824ff.template, skipping upload
+
+	File with same data already exists at b7b5c388e0c0deaae860f97960db23fb, skipping upload
+
+	File with same data already exists at b7b5c388e0c0deaae860f97960db23fb, skipping upload
+
+	File with same data already exists at b7b5c388e0c0deaae860f97960db23fb, skipping upload
+
+	File with same data already exists at b7b5c388e0c0deaae860f97960db23fb, skipping upload
+
+	File with same data already exists at b7b5c388e0c0deaae860f97960db23fb, skipping upload
+
+	File with same data already exists at b7b5c388e0c0deaae860f97960db23fb, skipping upload
+
+	Deploying with following values
+	===============================
+	Stack name                   : finance-intelligence-prod
+	Region                       : ap-south-1
+	Confirm changeset            : True
+	Disable rollback             : False
+	Deployment image repository  : 
+                                       {
+                                           "ReceiptsFunction": "9672****3724.dkr.ecr.ap-south-1.amazonaws.com/financeintelligenceprode62c8f15/receiptsfunction16b79565repo"
+                                       }
+	Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-6xbdhaxfekef
+	Capabilities                 : ["CAPABILITY_IAM"]
+	Parameter overrides          : {"Stage": "prod", "AllowDemoData": "false", "FrontendHosting": "apigateway"}
+	Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+-------------------------------------------------------------------------------------------------
+Operation                LogicalResourceId        ResourceType             Replacement            
+-------------------------------------------------------------------------------------------------
++ Add                    AccountFunctionCategor   AWS::Lambda::Permissio   N/A                    
+                         iesPermission            n                                               
++ Add                    AccountFunctionCategor   AWS::Lambda::Permissio   N/A                    
+                         yItemPermission          n                                               
++ Add                    AccountFunctionConfigP   AWS::Lambda::Permissio   N/A                    
+                         ermission                n                                               
++ Add                    AccountFunctionDeleteD   AWS::Lambda::Permissio   N/A                    
+                         ataPermission            n                                               
++ Add                    AccountFunctionDemoPer   AWS::Lambda::Permissio   N/A                    
+                         mission                  n                                               
++ Add                    AccountFunctionHealthP   AWS::Lambda::Permissio   N/A                    
+                         ermission                n                                               
++ Add                    AccountFunctionMePermi   AWS::Lambda::Permissio   N/A                    
+                         ssion                    n                                               
++ Add                    AccountFunctionPrefere   AWS::Lambda::Permissio   N/A                    
+                         ncesPermission           n                                               
++ Add                    AccountFunctionReferen   AWS::Lambda::Permissio   N/A                    
+                         cePermission             n                                               
++ Add                    AccountFunctionRole      AWS::IAM::Role           N/A                    
++ Add                    AccountFunction          AWS::Lambda::Function    N/A                    
++ Add                    AccountLogs              AWS::Logs::LogGroup      N/A                    
++ Add                    AnalyticsFunctionAnaly   AWS::Lambda::Permissio   N/A                    
+                         ticsPermission           n                                               
++ Add                    AnalyticsFunctionDashb   AWS::Lambda::Permissio   N/A                    
+                         oardPermission           n                                               
++ Add                    AnalyticsFunctionInsig   AWS::Lambda::Permissio   N/A                    
+                         htsPermission            n                                               
++ Add                    AnalyticsFunctionRole    AWS::IAM::Role           N/A                    
++ Add                    AnalyticsFunction        AWS::Lambda::Function    N/A                    
++ Add                    AnalyticsLogs            AWS::Logs::LogGroup      N/A                    
++ Add                    AnomaliesFunctionItemP   AWS::Lambda::Permissio   N/A                    
+                         ermission                n                                               
++ Add                    AnomaliesFunctionRole    AWS::IAM::Role           N/A                    
++ Add                    AnomaliesFunctionRootP   AWS::Lambda::Permissio   N/A                    
+                         ermission                n                                               
++ Add                    AnomaliesFunction        AWS::Lambda::Function    N/A                    
++ Add                    AnomaliesLogs            AWS::Logs::LogGroup      N/A                    
++ Add                    ApiServerErrorsAlarm     AWS::CloudWatch::Alarm   N/A                    
++ Add                    AssistantFunctionQuery   AWS::Lambda::Permissio   N/A                    
+                         Permission               n                                               
++ Add                    AssistantFunctionRole    AWS::IAM::Role           N/A                    
++ Add                    AssistantFunction        AWS::Lambda::Function    N/A                    
++ Add                    AssistantLogs            AWS::Logs::LogGroup      N/A                    
++ Add                    BudgetsFunctionItemPer   AWS::Lambda::Permissio   N/A                    
+                         mission                  n                                               
++ Add                    BudgetsFunctionRole      AWS::IAM::Role           N/A                    
++ Add                    BudgetsFunctionRootPer   AWS::Lambda::Permissio   N/A                    
+                         mission                  n                                               
++ Add                    BudgetsFunction          AWS::Lambda::Function    N/A                    
++ Add                    BudgetsLogs              AWS::Logs::LogGroup      N/A                    
++ Add                    ExpensesFunctionItemPe   AWS::Lambda::Permissio   N/A                    
+                         rmission                 n                                               
++ Add                    ExpensesFunctionRole     AWS::IAM::Role           N/A                    
++ Add                    ExpensesFunctionRootPe   AWS::Lambda::Permissio   N/A                    
+                         rmission                 n                                               
++ Add                    ExpensesFunction         AWS::Lambda::Function    N/A                    
++ Add                    ExpensesLogs             AWS::Logs::LogGroup      N/A                    
++ Add                    FinanceTable             AWS::DynamoDB::Table     N/A                    
++ Add                    HttpApiApiGatewayDefau   AWS::ApiGatewayV2::Sta   N/A                    
+                         ltStage                  ge                                              
++ Add                    HttpApi                  AWS::ApiGatewayV2::Api   N/A                    
++ Add                    PlanningFunctionGoalIt   AWS::Lambda::Permissio   N/A                    
+                         emPermission             n                                               
++ Add                    PlanningFunctionGoalsP   AWS::Lambda::Permissio   N/A                    
+                         ermission                n                                               
++ Add                    PlanningFunctionRole     AWS::IAM::Role           N/A                    
++ Add                    PlanningFunctionSimula   AWS::Lambda::Permissio   N/A                    
+                         tionItemPermission       n                                               
++ Add                    PlanningFunctionSimula   AWS::Lambda::Permissio   N/A                    
+                         tionsPermission          n                                               
++ Add                    PlanningFunction         AWS::Lambda::Function    N/A                    
++ Add                    PlanningLogs             AWS::Logs::LogGroup      N/A                    
++ Add                    ReceiptBucketPolicy      AWS::S3::BucketPolicy    N/A                    
++ Add                    ReceiptBucket            AWS::S3::Bucket          N/A                    
++ Add                    ReceiptsFunctionItemPe   AWS::Lambda::Permissio   N/A                    
+                         rmission                 n                                               
++ Add                    ReceiptsFunctionRole     AWS::IAM::Role           N/A                    
++ Add                    ReceiptsFunctionRootPe   AWS::Lambda::Permissio   N/A                    
+                         rmission                 n                                               
++ Add                    ReceiptsFunction         AWS::Lambda::Function    N/A                    
++ Add                    ReceiptsLogs             AWS::Logs::LogGroup      N/A                    
++ Add                    TableAccessPolicy        AWS::IAM::ManagedPolic   N/A                    
+                                                  y                                               
++ Add                    UserPoolClient           AWS::Cognito::UserPool   N/A                    
+                                                  Client                                          
++ Add                    UserPool                 AWS::Cognito::UserPool   N/A                    
++ Add                    WebFunctionFilesPermis   AWS::Lambda::Permissio   N/A                    
+                         sion                     n                                               
++ Add                    WebFunctionRole          AWS::IAM::Role           N/A                    
++ Add                    WebFunctionRootPermiss   AWS::Lambda::Permissio   N/A                    
+                         ion                      n                                               
++ Add                    WebFunction              AWS::Lambda::Function    N/A                    
++ Add                    WebLogs                  AWS::Logs::LogGroup      N/A                    
+-------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:ap-south-1:9672****3724:changeSet/samcli-deploy1792137493/10c1d4fc-027a-4f65-b128-6adc93d85ac0
+
+
+real	2m38.244s
+user	0m0.015s
+sys	0m0.000s

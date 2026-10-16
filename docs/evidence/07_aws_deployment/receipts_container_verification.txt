@@ -1,0 +1,19 @@
+# Receipts container verification — 2026-10-16T12:59:58+05:30
+$ docker image inspect receiptsfunction:v1 (os/arch, entrypoint, cmd, user)
+linux/amd64 entrypoint=["python","-m","awslambdaric"] cmd=["app.handlers.receipts.handler"] user=appuser workdir=/var/task
+$ tesseract --version; langs
+tesseract 5.5.0
+ leptonica-1.84.1
+List of available languages in "/usr/share/tesseract-ocr/5/tessdata/" (2):
+eng
+osd
+$ handler import + OCR on the synthetic sample receipt (no AWS calls)
+handler callable: True | awslambdaric 4.2.2
+tesseract_available: True
+ocr functions: ['dataclass', 'preprocess', 'resolve_tesseract', 'run_ocr', 'tesseract_available']
+$ docker run --read-only --tmpfs /tmp ... run_ocr(sample_receipt_generated.png)  [Lambda-like: read-only rootfs, writable /tmp, non-root user]
+seconds=0.24
+{}
+uid 10001
+{'lines': [{'text': 'FRESH MART SUPERMARKET', 'confidence': 95.3}, {'text': '12 MG Road, Bengaluru', 'confidence': 95.2}, {'text': 'Date: 14/10/2026', 'confidence': 92.5}], 'mean_confidence': 93.3}
+merchant FRESH MART SUPERMARKET | total 610.05 | date 2026-10-14 | tax 29.05

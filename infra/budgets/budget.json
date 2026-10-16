@@ -1,0 +1,7 @@
+{
+  "BudgetName": "finance-intelligence-monthly",
+  "BudgetLimit": { "Amount": "5", "Unit": "USD" },
+  "BudgetType": "COST",
+  "TimeUnit": "MONTHLY",
+  "CostTypes": { "IncludeCredit": false, "IncludeRefund": false, "UseBlended": false }
+}

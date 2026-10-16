@@ -1,0 +1,718 @@
+{
+ "stack": {
+  "StackId": "arn:aws:cloudformation:ap-south-1:9672****3724:stack/finance-intelligence-prod/56fa3b20-c937-11f1-819e-0affea31666f",
+  "StackName": "finance-intelligence-prod",
+  "ChangeSetId": "arn:aws:cloudformation:ap-south-1:9672****3724:changeSet/samcli-deploy1792144151/f8ae3774-eaa4-4216-bb6d-8a4241217027",
+  "Description": "Finance Intelligence - serverless backend and static frontend. FinSight (Finance Intelligence) - serverless backend and static frontend. Frontend: S3 (private) + CloudFront (OAC), or - while CloudFront is unavailable on the account - served by a static-file Lambda on the same HTTP API (FrontendHosting=apigateway). API: API Gateway HTTP API + Lambda (FastAPI via Mangum). Data: DynamoDB (single table, on-demand). Receipts: private S3 bucket. Auth: Amazon Cognito (Lite tier). See docs/AWS_DEPLOYMENT_PLAN.md.\n",
+  "Parameters": [
+   {
+    "ParameterKey": "ExtraCorsOrigin",
+    "ParameterValue": ""
+   },
+   {
+    "ParameterKey": "Stage",
+    "ParameterValue": "prod"
+   },
+   {
+    "ParameterKey": "FrontendHosting",
+    "ParameterValue": "apigateway"
+   },
+   {
+    "ParameterKey": "AllowDemoData",
+    "ParameterValue": "false"
+   },
+   {
+    "ParameterKey": "LogRetentionDays",
+    "ParameterValue": "14"
+   }
+  ],
+  "CreationTime": "2026-10-16 07:58:14.593000+00:00",
+  "LastUpdatedTime": "2026-10-16 09:49:41.645000+00:00",
+  "RollbackConfiguration": {},
+  "StackStatus": "UPDATE_COMPLETE",
+  "DisableRollback": false,
+  "DeploymentConfig": {
+   "Mode": "STANDARD",
+   "DisableRollback": false
+  },
+  "NotificationARNs": [],
+  "Capabilities": [
+   "CAPABILITY_IAM"
+  ],
+  "Outputs": [
+   {
+    "OutputKey": "ReceiptBucketName",
+    "OutputValue": "finance-intelligence-receipts-9672****3724-prod"
+   },
+   {
+    "OutputKey": "TableName",
+    "OutputValue": "finance-intelligence-prod"
+   },
+   {
+    "OutputKey": "UserPoolClientId",
+    "OutputValue": "3fa9mi5ouhkcbqtk6o8c5e3n9e"
+   },
+   {
+    "OutputKey": "ApiUrl",
+    "OutputValue": "https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com",
+    "Description": "Set VITE_API_BASE_URL to this value when building the frontend."
+   },
+   {
+    "OutputKey": "UserPoolId",
+    "OutputValue": "ap-south-1_qp3zLx5jI"
+   },
+   {
+    "OutputKey": "WebUrl",
+    "OutputValue": "https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com",
+    "Description": "Public URL of the web app."
+   },
+   {
+    "OutputKey": "FrontendHosting",
+    "OutputValue": "apigateway"
+   }
+  ],
+  "Tags": [],
+  "EnableTerminationProtection": false,
+  "DriftInformation": {
+   "StackDriftStatus": "NOT_CHECKED"
+  },
+  "LastOperations": [
+   {
+    "OperationType": "UPDATE_STACK",
+    "OperationId": "352f64a2-37b0-4b23-8325-c933faf73543"
+   }
+  ]
+ },
+ "resources": [
+  {
+   "LogicalResourceId": "AccountFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.379000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionCategoriesPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionCategoriesPermission-wRGorehdbUbF",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:55.101000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionCategoryItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionCategoryItemPermission-Mu0ABDo4MXBp",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.595000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionConfigPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionConfigPermission-iYc0ng4aq7gA",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.811000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionDeleteDataPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionDeleteDataPermission-4WYHhClkaYdW",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.686000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionDemoPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionDemoPermission-1tCezeUH28jM",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.324000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionHealthPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionHealthPermission-pDrEL4kwcwBO",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.996000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionMePermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionMePermission-RNZnGRQlDMoI",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.351000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionPreferencesPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionPreferencesPermission-lcPqBlKEWJSW",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.204000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionReferencePermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionReferencePermission-5SLG59IdZCaH",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.531000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-AccountFunctionRole-KkMlhB7auEqi",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:38.450000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AccountLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.804000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnalyticsFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.309000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnalyticsFunctionAnalyticsPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AnalyticsFunctionAnalyticsPermission-eQ6jPlmyIx0U",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.625000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnalyticsFunctionDashboardPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AnalyticsFunctionDashboardPermission-n1RoPjnhxy2z",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.420000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnalyticsFunctionInsightsPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AnalyticsFunctionInsightsPermission-xl5EWjL3u68k",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.509000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnalyticsFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-AnalyticsFunctionRole-FVBlGnxBU1Km",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:37.987000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnalyticsLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.330000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnomaliesFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.354000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnomaliesFunctionItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AnomaliesFunctionItemPermission-cvblBklg3coy",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.948000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnomaliesFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-AnomaliesFunctionRole-jXRnhqAZ6ZXU",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:38.060000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnomaliesFunctionRootPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AnomaliesFunctionRootPermission-h9bUcwLZSB8G",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.711000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AnomaliesLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.458000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ApiServerErrorsAlarm",
+   "PhysicalResourceId": "finance-intelligence-prod-ApiServerErrorsAlarm-KH5Ry8RCau8w",
+   "ResourceType": "AWS::CloudWatch::Alarm",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:50.663000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AssistantFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.431000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AssistantFunctionQueryPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-AssistantFunctionQueryPermission-PV8udsPyOGn9",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.771000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AssistantFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-AssistantFunctionRole-14seI58IOe8K",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:38.244000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "AssistantLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.455000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "BudgetsFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.424000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "BudgetsFunctionItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-BudgetsFunctionItemPermission-MpAwVsq7VnZL",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.431000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "BudgetsFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-BudgetsFunctionRole-EnkjwgFjstHk",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:37.849000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "BudgetsFunctionRootPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-BudgetsFunctionRootPermission-7w3axwG5lCaF",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.628000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "BudgetsLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.170000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ExpensesFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.405000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ExpensesFunctionItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-ExpensesFunctionItemPermission-kp6syGUpkOa7",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.580000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ExpensesFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-ExpensesFunctionRole-L9KhV75QIx9i",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:37.988000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ExpensesFunctionRootPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-ExpensesFunctionRootPermission-MBQVIY3qsMBE",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.451000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ExpensesLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.254000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "FinanceTable",
+   "PhysicalResourceId": "finance-intelligence-prod",
+   "ResourceType": "AWS::DynamoDB::Table",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:01.014000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "HttpApi",
+   "PhysicalResourceId": "zkht2b4ib3",
+   "ResourceType": "AWS::ApiGatewayV2::Api",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:47.787000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "HttpApiApiGatewayDefaultStage",
+   "PhysicalResourceId": "$default",
+   "ResourceType": "AWS::ApiGatewayV2::Stage",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.657000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.321000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningFunctionGoalItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-PlanningFunctionGoalItemPermission-cL8oUiCTruGe",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.563000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningFunctionGoalsPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-PlanningFunctionGoalsPermission-isHMSGkM5J8E",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.483000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-PlanningFunctionRole-JaL5Jkqpu9k3",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:38.045000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningFunctionSimulationItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-PlanningFunctionSimulationItemPermission-KZAgm73xfw4w",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.533000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningFunctionSimulationsPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-PlanningFunctionSimulationsPermission-UbXQoHklL5mY",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.278000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "PlanningLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.207000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptBucket",
+   "PhysicalResourceId": "finance-intelligence-receipts-9672****3724-prod",
+   "ResourceType": "AWS::S3::Bucket",
+   "LastUpdatedTimestamp": "2026-10-16 07:58:52.734000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptBucketPolicy",
+   "PhysicalResourceId": "finance-intelligence-receipts-9672****3724-prod",
+   "ResourceType": "AWS::S3::BucketPolicy",
+   "LastUpdatedTimestamp": "2026-10-16 07:58:55.065000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptsFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:50:02.317000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptsFunctionItemPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-ReceiptsFunctionItemPermission-l3rFNqsI65q2",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.490000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptsFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-ReceiptsFunctionRole-tra3ZvQrK5GS",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:38.397000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptsFunctionRootPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-ReceiptsFunctionRootPermission-o9bg4PhFUOOt",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.764000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "ReceiptsLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:51.643000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "TableAccessPolicy",
+   "PhysicalResourceId": "arn:aws:iam::9672****3724:policy/finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su",
+   "ResourceType": "AWS::IAM::ManagedPolicy",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:19.484000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "UserPool",
+   "PhysicalResourceId": "ap-south-1_qp3zLx5jI",
+   "ResourceType": "AWS::Cognito::UserPool",
+   "LastUpdatedTimestamp": "2026-10-16 07:58:39.919000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "UserPoolClient",
+   "PhysicalResourceId": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+   "ResourceType": "AWS::Cognito::UserPoolClient",
+   "LastUpdatedTimestamp": "2026-10-16 07:58:41.649000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "WebFunction",
+   "PhysicalResourceId": "finance-intelligence-prod-WebFunction-uBmtaQvY7VVV",
+   "ResourceType": "AWS::Lambda::Function",
+   "LastUpdatedTimestamp": "2026-10-16 09:49:53.268000+00:00",
+   "ResourceStatus": "UPDATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "WebFunctionFilesPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-WebFunctionFilesPermission-O8rflb0bSnE1",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:49.432000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "WebFunctionRole",
+   "PhysicalResourceId": "finance-intelligence-prod-WebFunctionRole-UbAVptD6N46W",
+   "ResourceType": "AWS::IAM::Role",
+   "LastUpdatedTimestamp": "2026-10-16 07:58:55.462000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "WebFunctionRootPermission",
+   "PhysicalResourceId": "finance-intelligence-prod-WebFunctionRootPermission-WuvWnwRQ3Rj1",
+   "ResourceType": "AWS::Lambda::Permission",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:54.782000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  },
+  {
+   "LogicalResourceId": "WebLogs",
+   "PhysicalResourceId": "/aws/lambda/finance-intelligence-prod-WebFunction-uBmtaQvY7VVV",
+   "ResourceType": "AWS::Logs::LogGroup",
+   "LastUpdatedTimestamp": "2026-10-16 07:59:15.060000+00:00",
+   "ResourceStatus": "CREATE_COMPLETE",
+   "DriftInformation": {
+    "StackResourceDriftStatus": "NOT_CHECKED"
+   }
+  }
+ ]
+}

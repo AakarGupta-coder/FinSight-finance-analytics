@@ -1,0 +1,522 @@
+{
+ "ran_at": "2026-10-16T15:23:52.353661",
+ "stack": "finance-intelligence-prod",
+ "region": "ap-south-1",
+ "passed": 64,
+ "limitations": 0,
+ "total": 64,
+ "results": [
+  {
+   "id": "FE-01",
+   "feature": "Web app (SPA) served over HTTPS",
+   "method": "GET WebUrl /",
+   "expected": "200 text/html, FinSight title",
+   "actual": "200 text/html; charset=utf-8",
+   "status": "PASS"
+  },
+  {
+   "id": "FE-02",
+   "feature": "Deep link fallback",
+   "method": "GET /app/budgets",
+   "expected": "200 index.html (SPA routing)",
+   "actual": "200",
+   "status": "PASS"
+  },
+  {
+   "id": "FE-03",
+   "feature": "Security headers",
+   "method": "GET / response headers",
+   "expected": "HSTS, nosniff, frame options, referrer policy",
+   "actual": "{\"strict-transport-security\": \"max-age=31536000\", \"x-content-type-options\": \"nosniff\", \"x-frame-options\": \"SAMEORIGIN\", \"referrer-policy\": \"strict-origin-when-cross-origin\"}",
+   "status": "PASS"
+  },
+  {
+   "id": "FE-04",
+   "feature": "No plain-HTTP access",
+   "method": "GET http://…/",
+   "expected": "redirect to https (CloudFront) or no HTTP listener (API Gateway)",
+   "actual": "no plain-HTTP listener (ConnectError)",
+   "status": "PASS"
+  },
+  {
+   "id": "FE-05",
+   "feature": "Hashed JS asset cached long-term",
+   "method": "GET /assets/index-CdsErXzA.js",
+   "expected": "200, immutable cache-control",
+   "actual": "200 public,max-age=31536000,immutable",
+   "status": "PASS"
+  },
+  {
+   "id": "FE-06",
+   "feature": "Bundle uses the same-origin API (no localhost/dev URLs)",
+   "method": "scan JS bundles",
+   "expected": "no 'localhost' / '127.0.0.1'",
+   "actual": "3 bundle(s) scanned",
+   "status": "PASS"
+  },
+  {
+   "id": "API-01",
+   "feature": "Health (public)",
+   "method": "GET /health",
+   "expected": "200, database ok, dynamodb backend",
+   "actual": "{\"status\":\"ok\",\"database\":\"ok\",\"environment\":\"production\",\"data_backend\":\"dynamodb\"}",
+   "status": "PASS"
+  },
+  {
+   "id": "API-02",
+   "feature": "Public config",
+   "method": "GET /config",
+   "expected": "auth_mode cognito, presigned uploads",
+   "actual": "auth_mode=cognito upload=presigned",
+   "status": "PASS"
+  },
+  {
+   "id": "API-03",
+   "feature": "No OpenAPI docs in production",
+   "method": "GET /api/docs, /api/openapi.json",
+   "expected": "404 (not routed / disabled)",
+   "actual": "404/404",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-01",
+   "feature": "Unauthenticated request rejected",
+   "method": "GET /expenses (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-02",
+   "feature": "Unauthenticated request rejected",
+   "method": "POST /expenses (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-03",
+   "feature": "Unauthenticated request rejected",
+   "method": "GET /dashboard (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-04",
+   "feature": "Unauthenticated request rejected",
+   "method": "GET /budgets (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-05",
+   "feature": "Unauthenticated request rejected",
+   "method": "GET /goals (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-06",
+   "feature": "Unauthenticated request rejected",
+   "method": "GET /receipts (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-07",
+   "feature": "Unauthenticated request rejected",
+   "method": "POST /assistant/query (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-08",
+   "feature": "Unauthenticated request rejected",
+   "method": "GET /me (no token)",
+   "expected": "401 from the JWT authorizer",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-09",
+   "feature": "Malformed/forged token rejected",
+   "method": "GET /expenses (forged JWT)",
+   "expected": "401",
+   "actual": "401",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-01",
+   "feature": "Registration (Cognito SignUp)",
+   "method": "SignUp + AdminConfirmSignUp",
+   "expected": "user created and confirmed",
+   "actual": "2 users",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-02",
+   "feature": "Login (USER_PASSWORD_AUTH)",
+   "method": "InitiateAuth",
+   "expected": "access + refresh tokens issued",
+   "actual": "tokens issued (not logged)",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-03",
+   "feature": "Wrong password rejected",
+   "method": "InitiateAuth (bad password)",
+   "expected": "NotAuthorizedException",
+   "actual": "NotAuthorizedException",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-04",
+   "feature": "Token refresh",
+   "method": "InitiateAuth REFRESH_TOKEN_AUTH",
+   "expected": "new access token",
+   "actual": "new access token issued",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-05",
+   "feature": "Authenticated request; identity from token",
+   "method": "GET /me",
+   "expected": "200, Cognito auth mode, id = token sub",
+   "actual": "200 auth_mode=cognito",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-06",
+   "feature": "No UUID display name (fix D1)",
+   "method": "GET /me user.name",
+   "expected": "empty (frontend uses ID-token name)",
+   "actual": "''",
+   "status": "PASS"
+  },
+  {
+   "id": "PRF-01",
+   "feature": "Profile/preferences update",
+   "method": "PUT /preferences",
+   "expected": "200, persisted",
+   "actual": "200",
+   "status": "PASS"
+  },
+  {
+   "id": "SEC-10",
+   "feature": "Client-supplied user_id rejected",
+   "method": "POST /expenses with user_id",
+   "expected": "422",
+   "actual": "422",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-01",
+   "feature": "Expense creation",
+   "method": "POST /expenses ×6",
+   "expected": "201 each, persisted in DynamoDB",
+   "actual": "6/6 created",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-02",
+   "feature": "Expense retrieval",
+   "method": "GET /expenses/{id}",
+   "expected": "200, same amount",
+   "actual": "200",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-03",
+   "feature": "Expense update",
+   "method": "PUT /expenses/{id}",
+   "expected": "200, new amount persisted",
+   "actual": "200",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-04",
+   "feature": "Search",
+   "method": "GET /expenses?search=groceries",
+   "expected": "1 match",
+   "actual": "total_count=1",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-05",
+   "feature": "Filter + sort",
+   "method": "GET /expenses?category=food&sort=amount",
+   "expected": "only food rows",
+   "actual": "total_count=1",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-06",
+   "feature": "Expense deletion",
+   "method": "DELETE /expenses/{id}",
+   "expected": "204 then 404",
+   "actual": "204",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-07",
+   "feature": "Input validation",
+   "method": "POST /expenses (invalid body)",
+   "expected": "422 with error envelope + field details",
+   "actual": "422 validation_error fields=2",
+   "status": "PASS"
+  },
+  {
+   "id": "EXP-08",
+   "feature": "Unknown id",
+   "method": "GET /expenses/{unknown}",
+   "expected": "404 not_found",
+   "actual": "404",
+   "status": "PASS"
+  },
+  {
+   "id": "BUD-01",
+   "feature": "Budget creation (overall + category)",
+   "method": "POST /budgets ×2",
+   "expected": "201 each",
+   "actual": "201/201",
+   "status": "PASS"
+  },
+  {
+   "id": "BUD-02",
+   "feature": "Budget utilization & threshold status",
+   "method": "GET /budgets",
+   "expected": "shopping 89.9% → warning",
+   "actual": "util=89.9 status=warning",
+   "status": "PASS"
+  },
+  {
+   "id": "BUD-03",
+   "feature": "Budget update",
+   "method": "PUT /budgets/{id}",
+   "expected": "200, exceeded at ₹800",
+   "actual": "200 status=exceeded",
+   "status": "PASS"
+  },
+  {
+   "id": "BUD-04",
+   "feature": "Duplicate budget rejected",
+   "method": "POST /budgets (existing category)",
+   "expected": "409",
+   "actual": "409",
+   "status": "PASS"
+  },
+  {
+   "id": "ANA-01",
+   "feature": "Dashboard",
+   "method": "GET /dashboard",
+   "expected": "200, totals match seeded data",
+   "actual": "total_minor=371800",
+   "status": "PASS"
+  },
+  {
+   "id": "ANA-02",
+   "feature": "Spending analytics",
+   "method": "GET /analytics",
+   "expected": "200, 6 categories",
+   "actual": "200 categories=6",
+   "status": "PASS"
+  },
+  {
+   "id": "ANA-03",
+   "feature": "Financial Intelligence Engine",
+   "method": "GET /insights",
+   "expected": "200, ≥1 insight with evidence",
+   "actual": "200 insights=6",
+   "status": "PASS"
+  },
+  {
+   "id": "ANA-04",
+   "feature": "Anomaly detection endpoint",
+   "method": "GET /anomalies?status=all",
+   "expected": "200 with counts",
+   "actual": "200 counts={}",
+   "status": "PASS"
+  },
+  {
+   "id": "ANA-05",
+   "feature": "Anomaly re-scan",
+   "method": "POST /anomalies/scan",
+   "expected": "200 {scanned}",
+   "actual": "{\"scanned\":6,\"findings\":0,\"created\":0}",
+   "status": "PASS"
+  },
+  {
+   "id": "AST-01",
+   "feature": "Finance Assistant",
+   "method": "POST /assistant/query",
+   "expected": "200, total_spent intent with ₹ answer",
+   "actual": "You spent ₹3,718 for October 2026 (so far), across 6 transaction(s). The largest share was",
+   "status": "PASS"
+  },
+  {
+   "id": "GOL-01",
+   "feature": "Savings goal creation",
+   "method": "POST /goals",
+   "expected": "201",
+   "actual": "201",
+   "status": "PASS"
+  },
+  {
+   "id": "GOL-02",
+   "feature": "Contribution tracking",
+   "method": "POST /goals/{id}/contributions",
+   "expected": "saved 7,50,000 paise; progress 15%",
+   "actual": "201 saved=750000 pct=15.0",
+   "status": "PASS"
+  },
+  {
+   "id": "SIM-01",
+   "feature": "What-If simulator",
+   "method": "POST /simulations",
+   "expected": "200, positive monthly savings",
+   "actual": "200 savings=87091",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-01",
+   "feature": "OCR available in deployed container",
+   "method": "GET /receipts/status",
+   "expected": "ocr_available true, presigned mode",
+   "actual": "{\"ocr_available\":true,\"upload_mode\":\"presigned\",\"max_bytes\":5242880,\"accepted_types\":[\"image/jpeg\",\"image/png\",\"image/we",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-02",
+   "feature": "Presigned upload issued",
+   "method": "POST /receipts/upload-url",
+   "expected": "201 with POST fields (URL not logged)",
+   "actual": "201",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-03",
+   "feature": "S3 CORS allows the web origin",
+   "method": "OPTIONS presigned URL (Origin=WebUrl)",
+   "expected": "200 + allow-origin",
+   "actual": "200",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-04",
+   "feature": "Direct browser-style upload to private bucket",
+   "method": "POST presigned form",
+   "expected": "204",
+   "actual": "204",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-05",
+   "feature": "Upload size limit enforced by S3 policy",
+   "method": "POST 6 MB via presigned form",
+   "expected": "rejected (400 EntityTooLarge or reset)",
+   "actual": "400 EntityTooLarge",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-06",
+   "feature": "OCR processing (Tesseract in Lambda container)",
+   "method": "POST /receipts/{id}/process",
+   "expected": "200, total 610.05 extracted",
+   "actual": "200 total_minor=61005 merchant=FRESH MART SUPERMARKET ocr=93.3% in 2.6s",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-07",
+   "feature": "Receipt retrieval via short-lived presigned GET",
+   "method": "GET /receipts/{id}/image then fetch",
+   "expected": "200 image/png",
+   "actual": "200",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-08",
+   "feature": "Receipt bucket is private",
+   "method": "unsigned GET of the object",
+   "expected": "403",
+   "actual": "403",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-09",
+   "feature": "Review & confirm creates linked expense",
+   "method": "POST /receipts/{id}/confirm",
+   "expected": "201, expense.receipt_id set",
+   "actual": "201",
+   "status": "PASS"
+  },
+  {
+   "id": "RCT-10",
+   "feature": "Unsupported file type rejected",
+   "method": "POST /receipts/upload-url (pdf)",
+   "expected": "422",
+   "actual": "422",
+   "status": "PASS"
+  },
+  {
+   "id": "ISO-01",
+   "feature": "User B cannot read/modify user A's expense, receipt or goal",
+   "method": "6 cross-user requests",
+   "expected": "404 for every request",
+   "actual": "[404, 404, 404, 404, 404, 404]",
+   "status": "PASS"
+  },
+  {
+   "id": "ISO-02",
+   "feature": "User B's lists are empty",
+   "method": "GET /expenses as B",
+   "expected": "total_count 0",
+   "actual": "total_count=0",
+   "status": "PASS"
+  },
+  {
+   "id": "ISO-03",
+   "feature": "A's data intact after B's attempts",
+   "method": "GET /expenses/{id} as A",
+   "expected": "amount unchanged",
+   "actual": "unchanged",
+   "status": "PASS"
+  },
+  {
+   "id": "COR-01",
+   "feature": "Site and API share one origin (no CORS needed)",
+   "method": "compare WebUrl and ApiUrl",
+   "expected": "identical origins",
+   "actual": "zkht2b4ib3.execute-api…",
+   "status": "PASS"
+  },
+  {
+   "id": "COR-02",
+   "feature": "Foreign origin not allowed",
+   "method": "OPTIONS with Origin evil.example",
+   "expected": "no allow-origin header",
+   "actual": "401 None",
+   "status": "PASS"
+  },
+  {
+   "id": "AUTH-07",
+   "feature": "Sign-out (GlobalSignOut) revokes the access token",
+   "method": "GET /me before and ~17 s after GlobalSignOut",
+   "expected": "200 before; 401 token_revoked after",
+   "actual": "before=200 after=401 code=token_revoked",
+   "status": "PASS"
+  },
+  {
+   "id": "CLN-01",
+   "feature": "Isolation user B cleaned up",
+   "method": "POST /account/delete-data + AdminDeleteUser",
+   "expected": "200, user removed",
+   "actual": "200",
+   "status": "PASS"
+  }
+ ]
+}

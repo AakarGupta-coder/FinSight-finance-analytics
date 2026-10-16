@@ -1,0 +1,490 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Finance Intelligence - serverless backend and static frontend.
+  FinSight (Finance Intelligence) - serverless backend and static frontend.
+  Frontend: S3 (private) + CloudFront (OAC), or - while CloudFront is unavailable on the account -
+  served by a static-file Lambda on the same HTTP API (FrontendHosting=apigateway).
+  API: API Gateway HTTP API + Lambda (FastAPI via Mangum). Data: DynamoDB (single table, on-demand).
+  Receipts: private S3 bucket. Auth: Amazon Cognito (Lite tier). See docs/PROJECT_DOCUMENTATION.md.
+
+Parameters:
+  Stage:
+    Type: String
+    Default: prod
+    AllowedPattern: "^[a-z0-9-]{2,12}$"
+  ExtraCorsOrigin:
+    Type: String
+    Default: ""
+    Description: Optional extra allowed browser origin (e.g. http://localhost:5173 while testing). Leave empty in production.
+  AllowDemoData:
+    Type: String
+    Default: "false"
+    AllowedValues: ["true", "false"]
+  FrontendHosting:
+    Type: String
+    Default: cloudfront
+    AllowedValues: [cloudfront, apigateway]
+    Description: >
+      cloudfront = private S3 bucket behind CloudFront (intended architecture).
+      apigateway = the SPA is served by WebFunction on the HTTP API (same origin as the API); used when
+      the account is not yet allowed to create CloudFront distributions.
+  LogRetentionDays:
+    Type: Number
+    Default: 14
+    AllowedValues: [1, 3, 5, 7, 14, 30]
+
+Conditions:
+  HasExtraOrigin: !Not [!Equals [!Ref ExtraCorsOrigin, ""]]
+  UseCloudFront: !Equals [!Ref FrontendHosting, cloudfront]
+
+Globals:
+  Function:
+    Architectures: [x86_64]
+    MemorySize: 512
+    Timeout: 15
+    Environment:
+      Variables:
+        APP_ENV: production
+        DATA_BACKEND: dynamodb
+        DYNAMODB_TABLE: !Ref FinanceTable
+        AUTH_MODE: cognito
+        COGNITO_USER_POOL_ID: !Ref UserPool
+        COGNITO_APP_CLIENT_ID: !Ref UserPoolClient
+        RECEIPT_STORAGE: s3
+        RECEIPT_BUCKET: !Ref ReceiptBucket
+        # API Gateway hosting serves the SPA from the API's own origin, so no cross-origin browser
+        # access is needed; a non-resolvable placeholder keeps the allow-list explicit (never "*").
+        CORS_ORIGINS: !If
+          - UseCloudFront
+          - !If
+            - HasExtraOrigin
+            - !Sub "https://${FrontendDistribution.DomainName},${ExtraCorsOrigin}"
+            - !Sub "https://${FrontendDistribution.DomainName}"
+          - !If [HasExtraOrigin, !Ref ExtraCorsOrigin, "https://same-origin.invalid"]
+        ALLOW_DEMO_DATA: !Ref AllowDemoData
+        LOG_LEVEL: INFO
+
+Resources:
+  # ------------------------------------------------------------------ data
+  FinanceTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: !Sub "finance-intelligence-${Stage}"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: PK, AttributeType: S }
+        - { AttributeName: SK, AttributeType: S }
+        - { AttributeName: GSI1PK, AttributeType: S }
+        - { AttributeName: GSI1SK, AttributeType: S }
+      KeySchema:
+        - { AttributeName: PK, KeyType: HASH }
+        - { AttributeName: SK, KeyType: RANGE }
+      GlobalSecondaryIndexes:
+        - IndexName: GSI1
+          KeySchema:
+            - { AttributeName: GSI1PK, KeyType: HASH }
+            - { AttributeName: GSI1SK, KeyType: RANGE }
+          Projection: { ProjectionType: ALL }
+      SSESpecification: { SSEEnabled: true }
+      # Point-in-time recovery adds storage cost; enable for real production use.
+      PointInTimeRecoverySpecification: { PointInTimeRecoveryEnabled: false }
+
+  ReceiptBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub "finance-intelligence-receipts-${AWS::AccountId}-${Stage}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules: [{ ObjectOwnership: BucketOwnerEnforced }]
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 }
+      CorsConfiguration:
+        CorsRules:
+          # Browsers upload directly with short-lived presigned POSTs; no public reads.
+          # (API Gateway hosting: the exact execute-api origin cannot be referenced here without a
+          # circular dependency, so the regional execute-api domain is allowed. Uploads still need a
+          # valid presigned policy, so this does not widen who can write.)
+          - AllowedMethods: [POST]
+            AllowedOrigins: !If
+              - UseCloudFront
+              - !If
+                - HasExtraOrigin
+                - [!Sub "https://${FrontendDistribution.DomainName}", !Ref ExtraCorsOrigin]
+                - [!Sub "https://${FrontendDistribution.DomainName}"]
+              - !If
+                - HasExtraOrigin
+                - [!Sub "https://*.execute-api.${AWS::Region}.amazonaws.com", !Ref ExtraCorsOrigin]
+                - [!Sub "https://*.execute-api.${AWS::Region}.amazonaws.com"]
+            AllowedHeaders: ["*"]
+            MaxAge: 600
+      LifecycleConfiguration:
+        Rules:
+          - Id: abort-incomplete-uploads
+            Status: Enabled
+            AbortIncompleteMultipartUpload: { DaysAfterInitiation: 1 }
+
+  ReceiptBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ReceiptBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource: [!GetAtt ReceiptBucket.Arn, !Sub "${ReceiptBucket.Arn}/*"]
+            Condition: { Bool: { "aws:SecureTransport": "false" } }
+
+  # ------------------------------------------------------------------ auth
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: !Sub "finance-intelligence-${Stage}"
+      UserPoolTier: LITE
+      UsernameAttributes: [email]
+      AutoVerifiedAttributes: [email]
+      AccountRecoverySetting:
+        RecoveryMechanisms: [{ Name: verified_email, Priority: 1 }]
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: false
+          RequireUppercase: false
+          RequireNumbers: true
+          RequireSymbols: false
+      Schema:
+        - { Name: email, AttributeDataType: String, Required: true, Mutable: true }
+        - { Name: name, AttributeDataType: String, Required: false, Mutable: true }
+      # Uses Cognito's built-in email sender (limited daily quota, no extra service).
+      EmailConfiguration: { EmailSendingAccount: COGNITO_DEFAULT }
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref UserPool
+      ClientName: web
+      GenerateSecret: false
+      ExplicitAuthFlows: [ALLOW_USER_PASSWORD_AUTH, ALLOW_REFRESH_TOKEN_AUTH]
+      PreventUserExistenceErrors: ENABLED
+      EnableTokenRevocation: true
+      AccessTokenValidity: 60
+      IdTokenValidity: 60
+      RefreshTokenValidity: 7
+      TokenValidityUnits: { AccessToken: minutes, IdToken: minutes, RefreshToken: days }
+
+  # ------------------------------------------------------------------ API
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: $default
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 50
+        ThrottlingRateLimit: 25
+      CorsConfiguration:
+        AllowOrigins: !If
+          - UseCloudFront
+          - !If
+            - HasExtraOrigin
+            - [!Sub "https://${FrontendDistribution.DomainName}", !Ref ExtraCorsOrigin]
+            - [!Sub "https://${FrontendDistribution.DomainName}"]
+          - !If [HasExtraOrigin, [!Ref ExtraCorsOrigin], ["https://same-origin.invalid"]]
+        AllowHeaders: [authorization, content-type]
+        AllowMethods: [GET, POST, PUT, DELETE, OPTIONS]
+        MaxAge: 600
+      Auth:
+        DefaultAuthorizer: CognitoJwt
+        Authorizers:
+          CognitoJwt:
+            IdentitySource: $request.header.Authorization
+            JwtConfiguration:
+              issuer: !Sub "https://cognito-idp.${AWS::Region}.amazonaws.com/${UserPool}"
+              audience: [!Ref UserPoolClient]
+
+  # Shared least-privilege policy: item-level access to the one table, no Scan.
+  TableAccessPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Query
+              - dynamodb:BatchWriteItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DescribeTable
+            Resource: [!GetAtt FinanceTable.Arn, !Sub "${FinanceTable.Arn}/index/*"]
+
+  ExpensesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.expenses.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      Policies: [!Ref TableAccessPolicy]
+      Events:
+        Root: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/expenses, Method: ANY } }
+        Item: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/expenses/{proxy+}", Method: ANY } }
+
+  BudgetsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.budgets.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      Policies: [!Ref TableAccessPolicy]
+      Events:
+        Root: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/budgets, Method: ANY } }
+        Item: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/budgets/{proxy+}", Method: ANY } }
+
+  AnalyticsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.analytics.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      MemorySize: 768
+      Policies: [!Ref TableAccessPolicy]
+      Events:
+        Dashboard: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/dashboard, Method: GET } }
+        Analytics: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/analytics, Method: GET } }
+        Insights: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/insights, Method: GET } }
+
+  AnomaliesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.anomalies.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      Timeout: 30
+      Policies: [!Ref TableAccessPolicy]
+      Events:
+        Root: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/anomalies, Method: ANY } }
+        Item: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/anomalies/{proxy+}", Method: ANY } }
+
+  PlanningFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.planning.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      Policies: [!Ref TableAccessPolicy]
+      Events:
+        Goals: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/goals, Method: ANY } }
+        GoalItem: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/goals/{proxy+}", Method: ANY } }
+        Simulations: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/simulations, Method: POST } }
+        SimulationItem: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/simulations/{proxy+}", Method: POST } }
+
+  AssistantFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.assistant.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      Policies: [!Ref TableAccessPolicy]
+      Events:
+        Query: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/assistant/query, Method: POST } }
+
+  AccountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handlers.account.handler
+      Runtime: python3.13
+      CodeUri: build/backend/
+      Timeout: 30
+      Policies:
+        - !Ref TableAccessPolicy
+        # Account deletion removes the user's receipt files.
+        - Statement:
+            - Effect: Allow
+              Action: [s3:DeleteObject]
+              Resource: !Sub "${ReceiptBucket.Arn}/*"
+      Events:
+        Health: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/health, Method: GET, Auth: { Authorizer: NONE } } }
+        Config: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/config, Method: GET, Auth: { Authorizer: NONE } } }
+        Me: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/me, Method: GET } }
+        Reference: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/reference, Method: GET } }
+        Preferences: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/preferences, Method: PUT } }
+        Categories: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/categories, Method: POST } }
+        CategoryItem: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/categories/{id}", Method: DELETE } }
+        Demo: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/demo-data, Method: ANY } }
+        DeleteData: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/account/delete-data, Method: POST } }
+
+  # Receipt OCR needs the Tesseract binary, so this function is a container image.
+  ReceiptsFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.receipts
+      DockerContext: ../backend
+      DockerTag: v1
+    Properties:
+      PackageType: Image
+      MemorySize: 1024
+      Timeout: 60
+      Policies:
+        - !Ref TableAccessPolicy
+        - Statement:
+            - Effect: Allow
+              Action: [s3:GetObject, s3:PutObject, s3:DeleteObject]
+              Resource: !Sub "${ReceiptBucket.Arn}/*"
+      Events:
+        Root: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /api/v1/receipts, Method: ANY } }
+        Item: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/api/v1/receipts/{proxy+}", Method: ANY } }
+
+  # Serves the built SPA from the HTTP API (FrontendHosting=apigateway). Public, read-only, no AWS access.
+  # The more specific /api/v1/* routes always win over these greedy routes.
+  WebFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.handler
+      Runtime: python3.13
+      CodeUri: build/web/
+      MemorySize: 256
+      Timeout: 10
+      Environment:
+        Variables:
+          APP_ENV: production
+      Events:
+        Root: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: /, Method: GET, Auth: { Authorizer: NONE } } }
+        Files: { Type: HttpApi, Properties: { ApiId: !Ref HttpApi, Path: "/{proxy+}", Method: GET, Auth: { Authorizer: NONE } } }
+
+  # Explicit log groups so logs expire instead of being kept forever.
+  ExpensesLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${ExpensesFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  BudgetsLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${BudgetsFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  AnalyticsLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${AnalyticsFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  AnomaliesLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${AnomaliesFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  PlanningLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${PlanningFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  AssistantLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${AssistantFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  AccountLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${AccountFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  ReceiptsLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${ReceiptsFunction}", RetentionInDays: !Ref LogRetentionDays } }
+  WebLogs: { Type: AWS::Logs::LogGroup, Properties: { LogGroupName: !Sub "/aws/lambda/${WebFunction}", RetentionInDays: !Ref LogRetentionDays } }
+
+  ApiServerErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: API is returning 5xx errors.
+      Namespace: AWS/ApiGateway
+      MetricName: 5xx
+      Dimensions: [{ Name: ApiId, Value: !Ref HttpApi }]
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+
+  # ------------------------------------------------------------------ frontend
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Condition: UseCloudFront
+    Properties:
+      BucketName: !Sub "finance-intelligence-web-${AWS::AccountId}-${Stage}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules: [{ ObjectOwnership: BucketOwnerEnforced }]
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 }
+
+  FrontendOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Condition: UseCloudFront
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "finance-intelligence-web-${Stage}"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  FrontendDistribution:
+    Type: AWS::CloudFront::Distribution
+    Condition: UseCloudFront
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: Finance Intelligence web app
+        DefaultRootObject: index.html
+        HttpVersion: http2and3
+        PriceClass: PriceClass_200
+        Origins:
+          - Id: web
+            DomainName: !GetAtt FrontendBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt FrontendOAC.Id
+            S3OriginConfig: { OriginAccessIdentity: "" }
+        DefaultCacheBehavior:
+          TargetOriginId: web
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6          # Managed-CachingOptimized
+          ResponseHeadersPolicyId: 67f7725c-6f97-4210-82d7-5512b31e9d03 # Managed-SecurityHeadersPolicy
+        # Single-page app: unknown paths return index.html so client routing works.
+        CustomErrorResponses:
+          - { ErrorCode: 403, ResponseCode: 200, ResponsePagePath: /index.html, ErrorCachingMinTTL: 0 }
+          - { ErrorCode: 404, ResponseCode: 200, ResponsePagePath: /index.html, ErrorCachingMinTTL: 0 }
+
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Condition: UseCloudFront
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontRead
+            Effect: Allow
+            Principal: { Service: cloudfront.amazonaws.com }
+            Action: s3:GetObject
+            Resource: !Sub "${FrontendBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${FrontendDistribution}"
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource: [!GetAtt FrontendBucket.Arn, !Sub "${FrontendBucket.Arn}/*"]
+            Condition: { Bool: { "aws:SecureTransport": "false" } }
+
+Outputs:
+  ApiUrl:
+    Description: Set VITE_API_BASE_URL to this value when building the frontend.
+    Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+  WebUrl:
+    Description: Public URL of the web app.
+    Value: !If [UseCloudFront, !Sub "https://${FrontendDistribution.DomainName}", !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"]
+  FrontendHosting:
+    Value: !Ref FrontendHosting
+  FrontendBucketName:
+    Condition: UseCloudFront
+    Value: !Ref FrontendBucket
+  DistributionId:
+    Condition: UseCloudFront
+    Value: !Ref FrontendDistribution
+  ReceiptBucketName:
+    Value: !Ref ReceiptBucket
+  TableName:
+    Value: !Ref FinanceTable
+  UserPoolId:
+    Value: !Ref UserPool
+  UserPoolClientId:
+    Value: !Ref UserPoolClient

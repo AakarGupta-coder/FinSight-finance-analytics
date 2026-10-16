@@ -1,0 +1,56 @@
+Building codeuri: D:\Aakar\College\CAD Project\infra\build\backend runtime: python3.13 architecture: x86_64 functions: ExpensesFunction, BudgetsFunction, AnalyticsFunction, AnomaliesFunction, PlanningFunction, AssistantFunction, AccountFunction
+ Running PythonPipBuilder:ResolveDependencies
+ Running PythonPipBuilder:CopySource
+Building codeuri: D:\Aakar\College\CAD Project\infra\build\web runtime: python3.13 architecture: x86_64 functions: WebFunction
+requirements.txt file not found. Continuing the build without dependencies.
+ Running PythonPipBuilder:CopySource
+Building codeuri: D:\Aakar\College\CAD Project\infra runtime: None architecture: x86_64 functions: ReceiptsFunction
+Building image for ReceiptsFunction function
+Setting DockerBuildArgs for ReceiptsFunction function
+Step 1/10 : FROM public.ecr.aws/docker/library/python:3.13-slim
+ ---> 70729b46c69b
+Step 2/10 : RUN apt-get update  && apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-eng  && apt-get clean  && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> a4c56ded83dc
+Step 3/10 : WORKDIR /var/task
+ ---> Using cache
+ ---> 053ef30dec18
+Step 4/10 : COPY requirements.txt .
+ ---> Using cache
+ ---> 2a6dd5df1efd
+Step 5/10 : RUN pip install --no-cache-dir -r requirements.txt awslambdaric boto3
+ ---> Using cache
+ ---> 525966d044de
+Step 6/10 : COPY app ./app
+ ---> 163fb081b65e
+Step 7/10 : RUN useradd --uid 10001 --no-create-home appuser
+ ---> Running in f4021f3ae05f
+ ---> Removed intermediate container f4021f3ae05f
+ ---> a22d1962b2f4
+Step 8/10 : USER appuser
+ ---> Running in 67fe7c185daf
+ ---> Removed intermediate container 67fe7c185daf
+ ---> e011c96fdfef
+Step 9/10 : ENTRYPOINT ["python", "-m", "awslambdaric"]
+ ---> Running in 01f5ed30752f
+ ---> Removed intermediate container 01f5ed30752f
+ ---> 50b2012f45a7
+Step 10/10 : CMD ["app.handlers.receipts.handler"]
+ ---> Running in a45cb54fff36
+ ---> Removed intermediate container a45cb54fff36
+ ---> b3936c458ff6
+Successfully built b3936c458ff6
+Successfully tagged receiptsfunction:v1
+
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam\build
+Built Template   : .aws-sam\build\template.yaml
+
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided

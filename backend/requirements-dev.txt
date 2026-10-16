@@ -1,0 +1,10 @@
+-r requirements.txt
+# Local development server and tooling
+uvicorn[standard]>=0.32
+python-dotenv>=1.0
+# AWS SDK (provided by the Lambda runtime; needed locally for the DynamoDB/S3 code paths)
+boto3>=1.35
+# Testing
+pytest>=8.3
+httpx>=0.27
+moto[dynamodb,s3]>=5.0

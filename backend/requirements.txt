@@ -1,0 +1,9 @@
+# Runtime dependencies (local + AWS Lambda)
+fastapi>=0.115,<1.0
+pydantic>=2.9,<3.0
+python-multipart>=0.0.18
+pyjwt[crypto]>=2.9,<3.0
+pillow>=11.0
+pytesseract>=0.3.13
+mangum>=0.19,<1.0
+tzdata>=2024.1

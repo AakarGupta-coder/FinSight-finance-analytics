@@ -1,0 +1,12 @@
+import ok account
+import ok expenses
+import ok budgets
+import ok analytics
+import ok anomalies
+import ok planning
+import ok assistant
+pydantic_core 2.50.1
+Traceback (most recent call last):
+$ Mangum round-trip, HTTP API v2 event GET /api/v1/health (read-only rootfs, sqlite in /tmp)
+2026-10-16 08:03:33,301 INFO app.http GET /api/v1/health 200 20ms rid=4ed86c3019714346
+200 {"status":"ok","database":"ok","environment":"production","data_backend":"sqlite"}

@@ -1,0 +1,66 @@
+PASS  FE-01  Web app (SPA) served over HTTPS: 200 text/html; charset=utf-8
+PASS  FE-02  Deep link fallback: 200
+PASS  FE-03  Security headers: {"strict-transport-security": "max-age=31536000", "x-content-type-options": "nosniff", "x-frame-options": "SAMEORIGIN", "referrer-policy": "strict-origin-when-cross-origin"}
+PASS  FE-04  No plain-HTTP access: no plain-HTTP listener (ConnectError)
+PASS  FE-05  Hashed JS asset cached long-term: 200 public,max-age=31536000,immutable
+PASS  FE-06  Bundle uses the same-origin API (no localhost/dev URLs): 3 bundle(s) scanned
+PASS  API-01 Health (public): {"status":"ok","database":"ok","environment":"production","data_backend":"dynamodb"}
+PASS  API-02 Public config: auth_mode=cognito upload=presigned
+PASS  API-03 No OpenAPI docs in production: 404/404
+PASS  SEC-01 Unauthenticated request rejected: 401
+PASS  SEC-02 Unauthenticated request rejected: 401
+PASS  SEC-03 Unauthenticated request rejected: 401
+PASS  SEC-04 Unauthenticated request rejected: 401
+PASS  SEC-05 Unauthenticated request rejected: 401
+PASS  SEC-06 Unauthenticated request rejected: 401
+PASS  SEC-07 Unauthenticated request rejected: 401
+PASS  SEC-08 Unauthenticated request rejected: 401
+PASS  SEC-09 Malformed/forged token rejected: 401
+PASS  AUTH-01 Registration (Cognito SignUp): 2 users
+PASS  AUTH-02 Login (USER_PASSWORD_AUTH): tokens issued (not logged)
+PASS  AUTH-03 Wrong password rejected: NotAuthorizedException
+PASS  AUTH-04 Token refresh: new access token issued
+PASS  AUTH-05 Authenticated request; identity from token: 200 auth_mode=cognito
+PASS  AUTH-06 No UUID display name (fix D1): ''
+PASS  PRF-01 Profile/preferences update: 200
+PASS  SEC-10 Client-supplied user_id rejected: 422
+PASS  EXP-01 Expense creation: 6/6 created
+PASS  EXP-02 Expense retrieval: 200
+PASS  EXP-03 Expense update: 200
+PASS  EXP-04 Search: total_count=1
+PASS  EXP-05 Filter + sort: total_count=1
+PASS  EXP-06 Expense deletion: 204
+PASS  EXP-07 Input validation: 422 validation_error fields=2
+PASS  EXP-08 Unknown id: 404
+PASS  BUD-01 Budget creation (overall + category): 201/201
+PASS  BUD-02 Budget utilization & threshold status: util=89.9 status=warning
+PASS  BUD-03 Budget update: 200 status=exceeded
+PASS  BUD-04 Duplicate budget rejected: 409
+PASS  ANA-01 Dashboard: total_minor=371800
+PASS  ANA-02 Spending analytics: 200 categories=6
+PASS  ANA-03 Financial Intelligence Engine: 200 insights=6
+PASS  ANA-04 Anomaly detection endpoint: 200 counts={}
+PASS  ANA-05 Anomaly re-scan: {"scanned":6,"findings":0,"created":0}
+PASS  AST-01 Finance Assistant: You spent ₹3,718 for October 2026 (so far), across 6 transaction(s). The largest share was
+PASS  GOL-01 Savings goal creation: 201
+PASS  GOL-02 Contribution tracking: 201 saved=750000 pct=15.0
+PASS  SIM-01 What-If simulator: 200 savings=87091
+PASS  RCT-01 OCR available in deployed container: {"ocr_available":true,"upload_mode":"presigned","max_bytes":5242880,"accepted_types":["image/jpeg","image/png","image/we
+PASS  RCT-02 Presigned upload issued: 201
+PASS  RCT-03 S3 CORS allows the web origin: 200
+PASS  RCT-04 Direct browser-style upload to private bucket: 204
+PASS  RCT-05 Upload size limit enforced by S3 policy: 400 EntityTooLarge
+PASS  RCT-06 OCR processing (Tesseract in Lambda container): 200 total_minor=61005 merchant=FRESH MART SUPERMARKET ocr=93.3% in 2.6s
+PASS  RCT-07 Receipt retrieval via short-lived presigned GET: 200
+PASS  RCT-08 Receipt bucket is private: 403
+PASS  RCT-09 Review & confirm creates linked expense: 201
+PASS  RCT-10 Unsupported file type rejected: 422
+PASS  ISO-01 User B cannot read/modify user A's expense, receipt or goal: [404, 404, 404, 404, 404, 404]
+PASS  ISO-02 User B's lists are empty: total_count=0
+PASS  ISO-03 A's data intact after B's attempts: unchanged
+PASS  COR-01 Site and API share one origin (no CORS needed): zkht2b4ib3.execute-api…
+PASS  COR-02 Foreign origin not allowed: 401 None
+PASS  AUTH-07 Sign-out (GlobalSignOut) revokes the access token: before=200 after=401 code=token_revoked
+PASS  CLN-01 Isolation user B cleaned up: 200
+
+64/64 passed -> D:\Aakar\College\CAD Project\docs\evidence\09_testing\live_api_results.json

@@ -1,0 +1,85 @@
+# Baseline frontend checks — 2026-10-16T12:02:27+05:30
+$ npm test
+
+ RUN  v3.2.7 D:/Aakar/College/CAD Project/frontend
+
+ ✓ src/lib/api.test.ts > request > attaches the bearer token and builds query strings 5ms
+ ✓ src/lib/api.test.ts > request > raises ApiError with field details and calls the 401 handler 3ms
+ ✓ src/lib/api.test.ts > request > reports network failures clearly instead of returning fake data 0ms
+ ✓ src/lib/api.test.ts > request > treats a bare gateway error (backend down behind a proxy) as unreachable 1ms
+ ✓ src/lib/format.test.ts > parseMoneyToMinor > parses exact decimal amounts without floating-point drift 2ms
+ ✓ src/lib/format.test.ts > parseMoneyToMinor > rejects invalid input 0ms
+ ✓ src/lib/format.test.ts > parseMoneyToMinor > respects zero-decimal currencies 0ms
+ ✓ src/lib/format.test.ts > money > formats INR with Indian grouping 16ms
+ ✓ src/lib/format.test.ts > money > rounds approximate figures to whole units on request 0ms
+ ✓ src/lib/format.test.ts > money > shows a dash for missing values 0ms
+ ✓ src/lib/format.test.ts > helpers > round-trips minor units to editable input 0ms
+ ✓ src/lib/format.test.ts > helpers > shows timestamps as dates in the user timezone 5ms
+ ✓ src/lib/format.test.ts > helpers > handles calendar math 1ms
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  12:02:30
+   Duration  2.60s (transform 140ms, setup 710ms, collect 145ms, tests 37ms, environment 3.08s, prepare 435ms)
+
+$ npm run typecheck
+
+> finance-intelligence-web@1.0.0 typecheck
+> tsc -b
+
+exit=0
+$ npm run build
+
+> finance-intelligence-web@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 2758 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              2.10 kB │ gzip:   0.85 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2     10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2      11.23 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2       18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2          18.99 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2   25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2          48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2      85.06 kB
+dist/assets/index-BeXJvw09.css                              53.22 kB │ gzip:  11.08 kB
+dist/assets/plus-DZgqDwC1.js                                 0.18 kB │ gzip:   0.17 kB
+dist/assets/trending-up-DsbRY06p.js                          0.20 kB │ gzip:   0.19 kB
+dist/assets/rotate-ccw-BKTQwbgg.js                           0.23 kB │ gzip:   0.20 kB
+dist/assets/info-DhjZFRPs.js                                 0.23 kB │ gzip:   0.20 kB
+dist/assets/target-BCS0Vyta.js                               0.26 kB │ gzip:   0.18 kB
+dist/assets/database-luyBtNVn.js                             0.27 kB │ gzip:   0.22 kB
+dist/assets/eye-yETGsagb.js                                  0.29 kB │ gzip:   0.22 kB
+dist/assets/pencil-CEO6UN83.js                               0.31 kB │ gzip:   0.24 kB
+dist/assets/list-checks-DGBgB9Vz.js                          0.31 kB │ gzip:   0.21 kB
+dist/assets/shield-check-CTrVi6EW.js                         0.35 kB │ gzip:   0.27 kB
+dist/assets/trash-B3uuVu80.js                                0.38 kB │ gzip:   0.24 kB
+dist/assets/file-image-2nFMWLJ3.js                           0.43 kB │ gzip:   0.29 kB
+dist/assets/octagon-alert-C1dng4-Q.js                        0.48 kB │ gzip:   0.28 kB
+dist/assets/ExpenseEditor-B_-8IuHO.js                        2.00 kB │ gzip:   1.06 kB
+dist/assets/feedback-dxbZBpy9.js                             4.22 kB │ gzip:   1.77 kB
+dist/assets/Insights-CphntqRy.js                             4.86 kB │ gzip:   1.87 kB
+dist/assets/Profile-BZYSz3uO.js                              4.96 kB │ gzip:   1.95 kB
+dist/assets/InsightCard-DxFqcjbZ.js                          5.73 kB │ gzip:   2.27 kB
+dist/assets/Assistant-BbyKh7pq.js                            7.82 kB │ gzip:   3.01 kB
+dist/assets/Anomalies--ksv_2kY.js                            7.84 kB │ gzip:   2.93 kB
+dist/assets/Analytics-BskwNHLb.js                            8.65 kB │ gzip:   3.01 kB
+dist/assets/Settings-B-LXKpGg.js                             9.40 kB │ gzip:   3.41 kB
+dist/assets/Receipts-Buw-J0g2.js                            12.13 kB │ gzip:   4.51 kB
+dist/assets/Goals-DewiBnhw.js                               12.18 kB │ gzip:   4.12 kB
+dist/assets/Simulator-CaiTrXFP.js                           13.18 kB │ gzip:   4.32 kB
+dist/assets/Budgets-Cd_2j8lI.js                             15.14 kB │ gzip:   4.59 kB
+dist/assets/Transactions-C2MpsuF5.js                        15.96 kB │ gzip:   5.37 kB
+dist/assets/Dashboard-ByJGbuDC.js                           23.01 kB │ gzip:   7.53 kB
+dist/assets/dialog-BUkFlKnX.js                              40.74 kB │ gzip:  13.81 kB
+dist/assets/primitives-DvAr071V.js                         151.82 kB │ gzip:  49.92 kB
+dist/assets/index-BQl95HYU.js                              405.48 kB │ gzip: 124.54 kB
+dist/assets/Donut-C9Ar4KEK.js                              417.31 kB │ gzip: 117.89 kB
+
+✓ built in 640ms
+$ cfn-lint infra/template.yaml
+cfn-lint exit=0

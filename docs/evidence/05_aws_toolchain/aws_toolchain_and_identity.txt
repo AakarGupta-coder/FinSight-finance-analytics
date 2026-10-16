@@ -1,0 +1,34 @@
+# AWS toolchain verification — 2026-10-16T12:30:24+05:30 (account ID masked)
+$ aws --version
+aws-cli/2.38.1 Python/3.14.6 Windows/11 exe/AMD64
+$ sam --version
+SAM CLI, version 1.169.0
+$ docker --version
+Docker version 29.8.2, build 7fc2dff
+$ docker info (server)
+Server 29.8.2 linux/x86_64 CPUs=12
+$ node --version / npm --version
+v23.8.0
+11.10.1
+$ python --version (host)
+Python 3.14.0
+$ aws sts get-caller-identity --profile finsight
+{
+    "UserId": "9672****3724",
+    "Account": "9672****3724",
+    "Arn": "arn:aws:iam::9672****3724:root"
+}
+$ aws configure get region --profile finsight
+$ aws account get-account-information --query AccountState
+ACTIVE
+$ aws freetier get-account-plan-state
+{
+    "accountId": "9672****3724",
+    "accountPlanType": "FREE",
+    "accountPlanStatus": "ACTIVE",
+    "accountPlanRemainingCredits": {
+        "amount": 139.91,
+        "unit": "USD"
+    },
+    "accountPlanExpirationDate": "2027-02-28T18:51:45.830000+00:00"
+}

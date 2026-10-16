@@ -1,0 +1,81 @@
+# IAM, resource and billing inventory — 2026-10-16T15:27:58+05:30 (read-only)
+
+$ IAM roles created by the stack, attached + inline policies
+## finance-intelligence-prod-AccountFunctionRole-KkMlhB7auEqi
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+inline AccountFunctionRolePolicy1:
+[{"Action":["s3:DeleteObject"],"Resource":"arn:aws:s3:::finance-intelligence-receipts-9672****3724-prod/*","Effect":"Allow"}]
+## finance-intelligence-prod-AnalyticsFunctionRole-FVBlGnxBU1Km
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+## finance-intelligence-prod-AnomaliesFunctionRole-jXRnhqAZ6ZXU
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+## finance-intelligence-prod-AssistantFunctionRole-14seI58IOe8K
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+## finance-intelligence-prod-BudgetsFunctionRole-EnkjwgFjstHk
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+## finance-intelligence-prod-ExpensesFunctionRole-L9KhV75QIx9i
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+## finance-intelligence-prod-PlanningFunctionRole-JaL5Jkqpu9k3
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+## finance-intelligence-prod-ReceiptsFunctionRole-tra3ZvQrK5GS
+finance-intelligence-prod-TableAccessPolicy-iUd70wZOH7Su	AWSLambdaBasicExecutionRole
+inline ReceiptsFunctionRolePolicy1:
+[{"Action":["s3:GetObject","s3:PutObject","s3:DeleteObject"],"Resource":"arn:aws:s3:::finance-intelligence-receipts-9672****3724-prod/*","Effect":"Allow"}]
+## finance-intelligence-prod-WebFunctionRole-UbAVptD6N46W
+AWSLambdaBasicExecutionRole
+
+$ TableAccessPolicy document
+[{"Action":["dynamodb:GetItem","dynamodb:PutItem","dynamodb:UpdateItem","dynamodb:DeleteItem","dynamodb:Query","dynamodb:BatchWriteItem","dynamodb:ConditionCheckItem","dynamodb:DescribeTable"],"Resource":["arn:aws:dynamodb:ap-south-1:9672****3724:table/finance-intelligence-prod","arn:aws:dynamodb:ap-south-1:9672****3724:table/finance-intelligence-prod/index/*"],"Effect":"Allow"}]
+
+$ account-wide: IAM users, access keys of root (summary), MFA
+{
+    "Users": 0,
+    "Roles": 16,
+    "AccountMFAEnabled": 1,
+    "AccountAccessKeysPresent": 0
+}
+
+$ all CloudFormation stacks
+finance-intelligence-prod	UPDATE_COMPLETE
+finance-intelligence-prod-e62c8f15-CompanionStack	UPDATE_COMPLETE
+aws-sam-cli-managed-default	CREATE_COMPLETE
+$ S3 buckets
+aws-sam-cli-managed-default-samclisourcebucket-6xbdhaxfekef	finance-intelligence-receipts-9672****3724-prod
+$ DynamoDB tables
+finance-intelligence-prod
+$ Lambda functions (count)
+9
+$ ECR images
+receiptsfunction-b3936c458ff6-v1	127357924	2026-10-16T15:19:02.894000+05:30
+receiptsfunction-857ae54decc6-v1	127557716	2026-10-16T13:07:32.299000+05:30
+receiptsfunction-05e9d36623b3-v1	127557925	2026-10-16T13:47:51.448000+05:30
+$ Lambda image in use
+9672****3724.dkr.ecr.ap-south-1.amazonaws.com/financeintelligenceprode62c8f15/receiptsfunction16b79565repo:receiptsfunction-b3936c458ff6-v1
+$ Cognito users (count)
+2
+$ receipts bucket object count / bytes
+None	70968
+
+$ aws freetier get-account-plan-state
+{
+    "accountId": "9672****3724",
+    "accountPlanType": "FREE",
+    "accountPlanStatus": "ACTIVE",
+    "accountPlanRemainingCredits": {
+        "amount": 159.91,
+        "unit": "USD"
+    },
+    "accountPlanExpirationDate": "2027-02-28T18:51:45.830000+00:00"
+}
+$ aws ce get-cost-and-usage (month to date, unblended, by service; one call)
+$ aws ce (net of credits: NetUnblendedCost total)
+{
+    "NetUnblendedCost": {
+        "Amount": "0",
+        "Unit": "USD"
+    },
+    "UnblendedCost": {
+        "Amount": "0",
+        "Unit": "USD"
+    }
+}

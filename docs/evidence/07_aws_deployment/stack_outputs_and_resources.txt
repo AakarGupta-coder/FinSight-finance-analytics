@@ -1,0 +1,100 @@
+# 2026-10-16T13:30:21+05:30
+$ aws cloudformation describe-stacks --stack-name finance-intelligence-prod (status + outputs)
+{
+    "Status": "CREATE_COMPLETE",
+    "Created": "2026-10-16T07:58:14.593000+00:00",
+    "Outputs": [
+        [
+            "ReceiptBucketName",
+            "finance-intelligence-receipts-9672****3724-prod"
+        ],
+        [
+            "TableName",
+            "finance-intelligence-prod"
+        ],
+        [
+            "UserPoolClientId",
+            "3fa9mi5ouhkcbqtk6o8c5e3n9e"
+        ],
+        [
+            "ApiUrl",
+            "https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com"
+        ],
+        [
+            "UserPoolId",
+            "ap-south-1_qp3zLx5jI"
+        ],
+        [
+            "WebUrl",
+            "https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com"
+        ],
+        [
+            "FrontendHosting",
+            "apigateway"
+        ]
+    ]
+}
+$ aws cloudformation list-stack-resources (type, status)
+AWS::ApiGatewayV2::Api	HttpApi	CREATE_COMPLETE
+AWS::ApiGatewayV2::Stage	HttpApiApiGatewayDefaultStage	CREATE_COMPLETE
+AWS::CloudWatch::Alarm	ApiServerErrorsAlarm	CREATE_COMPLETE
+AWS::Cognito::UserPool	UserPool	CREATE_COMPLETE
+AWS::Cognito::UserPoolClient	UserPoolClient	CREATE_COMPLETE
+AWS::DynamoDB::Table	FinanceTable	CREATE_COMPLETE
+AWS::IAM::ManagedPolicy	TableAccessPolicy	CREATE_COMPLETE
+AWS::IAM::Role	AccountFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	AnalyticsFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	AnomaliesFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	AssistantFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	BudgetsFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	ExpensesFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	PlanningFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	ReceiptsFunctionRole	CREATE_COMPLETE
+AWS::IAM::Role	WebFunctionRole	CREATE_COMPLETE
+AWS::Lambda::Function	AccountFunction	CREATE_COMPLETE
+AWS::Lambda::Function	AnalyticsFunction	CREATE_COMPLETE
+AWS::Lambda::Function	AnomaliesFunction	CREATE_COMPLETE
+AWS::Lambda::Function	AssistantFunction	CREATE_COMPLETE
+AWS::Lambda::Function	BudgetsFunction	CREATE_COMPLETE
+AWS::Lambda::Function	ExpensesFunction	CREATE_COMPLETE
+AWS::Lambda::Function	PlanningFunction	CREATE_COMPLETE
+AWS::Lambda::Function	ReceiptsFunction	CREATE_COMPLETE
+AWS::Lambda::Function	WebFunction	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionCategoriesPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionCategoryItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionConfigPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionDeleteDataPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionDemoPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionHealthPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionMePermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionPreferencesPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AccountFunctionReferencePermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AnalyticsFunctionAnalyticsPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AnalyticsFunctionDashboardPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AnalyticsFunctionInsightsPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AnomaliesFunctionItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AnomaliesFunctionRootPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	AssistantFunctionQueryPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	BudgetsFunctionItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	BudgetsFunctionRootPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	ExpensesFunctionItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	ExpensesFunctionRootPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	PlanningFunctionGoalItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	PlanningFunctionGoalsPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	PlanningFunctionSimulationItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	PlanningFunctionSimulationsPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	ReceiptsFunctionItemPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	ReceiptsFunctionRootPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	WebFunctionFilesPermission	CREATE_COMPLETE
+AWS::Lambda::Permission	WebFunctionRootPermission	CREATE_COMPLETE
+AWS::Logs::LogGroup	AccountLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	AnalyticsLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	AnomaliesLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	AssistantLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	BudgetsLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	ExpensesLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	PlanningLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	ReceiptsLogs	CREATE_COMPLETE
+AWS::Logs::LogGroup	WebLogs	CREATE_COMPLETE
+AWS::S3::Bucket	ReceiptBucket	CREATE_COMPLETE
+AWS::S3::BucketPolicy	ReceiptBucketPolicy	CREATE_COMPLETE

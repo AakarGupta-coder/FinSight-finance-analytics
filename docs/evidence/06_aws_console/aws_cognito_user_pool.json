@@ -1,0 +1,312 @@
+{
+ "pool": {
+  "Id": "ap-south-1_qp3zLx5jI",
+  "Name": "finance-intelligence-prod",
+  "Policies": {
+   "PasswordPolicy": {
+    "MinimumLength": 8,
+    "RequireUppercase": false,
+    "RequireLowercase": false,
+    "RequireNumbers": true,
+    "RequireSymbols": false,
+    "TemporaryPasswordValidityDays": 7
+   },
+   "SignInPolicy": {
+    "AllowedFirstAuthFactors": [
+     "PASSWORD"
+    ]
+   }
+  },
+  "DeletionProtection": "INACTIVE",
+  "LambdaConfig": {},
+  "LastModifiedDate": "2026-10-16 13:28:38.680000+05:30",
+  "CreationDate": "2026-10-16 13:28:38.680000+05:30",
+  "SchemaAttributes": [
+   {
+    "Name": "profile",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "address",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "birthdate",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "10",
+     "MaxLength": "10"
+    }
+   },
+   {
+    "Name": "gender",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "preferred_username",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "updated_at",
+    "AttributeDataType": "Number",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "NumberAttributeConstraints": {
+     "MinValue": "0"
+    }
+   },
+   {
+    "Name": "website",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "picture",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "identities",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {}
+   },
+   {
+    "Name": "sub",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": false,
+    "Required": true,
+    "StringAttributeConstraints": {
+     "MinLength": "1",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "email_verified",
+    "AttributeDataType": "Boolean",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false
+   },
+   {
+    "Name": "phone_number_verified",
+    "AttributeDataType": "Boolean",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false
+   },
+   {
+    "Name": "phone_number",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "zoneinfo",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "locale",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "email",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": true,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "given_name",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "family_name",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "middle_name",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "name",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   },
+   {
+    "Name": "nickname",
+    "AttributeDataType": "String",
+    "DeveloperOnlyAttribute": false,
+    "Mutable": true,
+    "Required": false,
+    "StringAttributeConstraints": {
+     "MinLength": "0",
+     "MaxLength": "2048"
+    }
+   }
+  ],
+  "AutoVerifiedAttributes": [
+   "email"
+  ],
+  "UsernameAttributes": [
+   "email"
+  ],
+  "VerificationMessageTemplate": {
+   "DefaultEmailOption": "CONFIRM_WITH_CODE"
+  },
+  "UserAttributeUpdateSettings": {
+   "AttributesRequireVerificationBeforeUpdate": []
+  },
+  "MfaConfiguration": "OFF",
+  "EstimatedNumberOfUsers": 2,
+  "EmailConfiguration": {
+   "EmailSendingAccount": "COGNITO_DEFAULT"
+  },
+  "UserPoolTags": {
+   "aws:cloudformation:logical-id": "UserPool",
+   "aws:cloudformation:stack-id": "arn:aws:cloudformation:ap-south-1:9672****3724:stack/finance-intelligence-prod/56fa3b20-c937-11f1-819e-0affea31666f",
+   "aws:cloudformation:stack-name": "finance-intelligence-prod"
+  },
+  "AdminCreateUserConfig": {
+   "AllowAdminCreateUserOnly": false,
+   "UnusedAccountValidityDays": 7
+  },
+  "Arn": "arn:aws:cognito-idp:ap-south-1:9672****3724:userpool/ap-south-1_qp3zLx5jI",
+  "AccountRecoverySetting": {
+   "RecoveryMechanisms": [
+    {
+     "Priority": 1,
+     "Name": "verified_email"
+    }
+   ]
+  },
+  "UserPoolTier": "LITE",
+  "KeyConfiguration": {
+   "KeyType": "AWS_OWNED_KEY"
+  },
+  "IssuerConfiguration": {
+   "Type": "ORIGINAL"
+  }
+ },
+ "client": {
+  "UserPoolId": "ap-south-1_qp3zLx5jI",
+  "ClientName": "web",
+  "ClientId": "3fa9mi5ouhkcbqtk6o8c5e3n9e",
+  "LastModifiedDate": "2026-10-16 13:28:40.992000+05:30",
+  "CreationDate": "2026-10-16 13:28:40.992000+05:30",
+  "RefreshTokenValidity": 7,
+  "AccessTokenValidity": 60,
+  "IdTokenValidity": 60,
+  "TokenValidityUnits": {
+   "AccessToken": "minutes",
+   "IdToken": "minutes",
+   "RefreshToken": "days"
+  },
+  "ExplicitAuthFlows": [
+   "ALLOW_REFRESH_TOKEN_AUTH",
+   "ALLOW_USER_PASSWORD_AUTH"
+  ],
+  "AllowedOAuthFlowsUserPoolClient": false,
+  "PreventUserExistenceErrors": "ENABLED",
+  "EnableTokenRevocation": true,
+  "EnablePropagateAdditionalUserContextData": false,
+  "AuthSessionValidity": 3
+ }
+}

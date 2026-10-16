@@ -1,0 +1,42 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+**/.env.local
+
+# Python
+backend/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local data (may contain personal financial information)
+backend/data/
+*.db
+*.db-wal
+*.db-shm
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# AWS SAM build output
+infra/.aws-sam/
+.aws-sam/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Claude Code local files
+.claude/
+.claude/settings.local.json
+infra/build/
+
+# Owner AWS Console captures: unmasked originals (full account ID). Masked report copies live in docs/report_assets/aws_console/.
+docs/evidence/manual/aws-console/Screenshot*.png

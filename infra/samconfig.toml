@@ -1,0 +1,24 @@
+# AWS SAM CLI configuration. `sam deploy` still shows the changeset and asks for confirmation.
+version = 0.1
+
+[default.global.parameters]
+stack_name = "finance-intelligence-prod"
+
+[default.build.parameters]
+# No build container needed: aws-lambda-builders fetches manylinux x86_64 cp313 wheels from
+# infra/build/backend/requirements.txt (needs a local python3.13 on PATH for SAM's runtime check).
+# The OCR function is always built with Docker from backend/Dockerfile.receipts.
+# On a fast network `sam build --use-container` (official build image) also works.
+use_container = false
+cached = false
+
+[default.deploy.parameters]
+region = "ap-south-1"
+# CLI profile signed in to the FinSight account (9672****3724); see docs/PROJECT_DOCUMENTATION.md §14.
+profile = "finsight"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+resolve_image_repos = true
+# FrontendHosting=apigateway until AWS Support enables CloudFront on the account (then switch to cloudfront).
+parameter_overrides = "Stage=prod AllowDemoData=false FrontendHosting=apigateway"

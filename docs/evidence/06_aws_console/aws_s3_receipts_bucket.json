@@ -1,0 +1,58 @@
+{
+ "public_access_block": {
+  "BlockPublicAcls": true,
+  "IgnorePublicAcls": true,
+  "BlockPublicPolicy": true,
+  "RestrictPublicBuckets": true
+ },
+ "encryption": {
+  "Rules": [
+   {
+    "ApplyServerSideEncryptionByDefault": {
+     "SSEAlgorithm": "AES256"
+    },
+    "BucketKeyEnabled": false,
+    "BlockedEncryptionTypes": {
+     "EncryptionType": [
+      "SSE-C"
+     ]
+    }
+   }
+  ]
+ },
+ "cors": [
+  {
+   "AllowedHeaders": [
+    "*"
+   ],
+   "AllowedMethods": [
+    "POST"
+   ],
+   "AllowedOrigins": [
+    "https://*.execute-api.ap-south-1.amazonaws.com"
+   ],
+   "MaxAgeSeconds": 600
+  }
+ ],
+ "policy": {
+  "Version": "2012-10-17",
+  "Statement": [
+   {
+    "Sid": "DenyInsecureTransport",
+    "Effect": "Deny",
+    "Principal": "*",
+    "Action": "s3:*",
+    "Resource": [
+     "arn:aws:s3:::finance-intelligence-receipts-9672****3724-prod",
+     "arn:aws:s3:::finance-intelligence-receipts-9672****3724-prod/*"
+    ],
+    "Condition": {
+     "Bool": {
+      "aws:SecureTransport": "false"
+     }
+    }
+   }
+  ]
+ },
+ "object_count": 2
+}

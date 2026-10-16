@@ -1,0 +1,12 @@
+# Final local regression — 2026-10-16T15:26:31+05:30
+$ backend pytest
+131 passed in 13.99s
+$ frontend npm test
+ Test Files  4 passed (4)
+      Tests  20 passed (20)
+$ npm run typecheck
+exit=0
+$ npm run build (same-origin build used by WebFunction)
+✓ built in 1.10s
+$ cfn-lint infra/template.yaml
+exit=0

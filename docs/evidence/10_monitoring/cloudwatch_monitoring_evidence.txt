@@ -1,0 +1,64 @@
+# CloudWatch monitoring evidence — 2026-10-16T14:14:13+05:30
+
+$ aws logs describe-log-groups --log-group-name-prefix /aws/lambda/finance-intelligence-prod (retention)
+/aws/lambda/finance-intelligence-prod-AccountFunction-ZVYW61UW4n9m	14	0
+/aws/lambda/finance-intelligence-prod-AnalyticsFunction-ubx4NJoWFYgL	14	0
+/aws/lambda/finance-intelligence-prod-AnomaliesFunction-2xJP6aBONlLN	14	0
+/aws/lambda/finance-intelligence-prod-AssistantFunction-a2Lpb5Hl1DTD	14	0
+/aws/lambda/finance-intelligence-prod-BudgetsFunction-jk7OsqNH5mJh	14	0
+/aws/lambda/finance-intelligence-prod-ExpensesFunction-wZvd3YvmM8gu	14	0
+/aws/lambda/finance-intelligence-prod-PlanningFunction-x1Pq1qmdWtcF	14	0
+/aws/lambda/finance-intelligence-prod-ReceiptsFunction-rWaWDO2JwHiB	14	0
+/aws/lambda/finance-intelligence-prod-WebFunction-uBmtaQvY7VVV	14	0
+
+$ aws cloudwatch describe-alarms (API 5xx alarm)
+finance-intelligence-prod-ApiServerErrorsAlarm-KH5Ry8RCau8w	OK	5xx	5.0	GreaterThanOrEqualToThreshold
+
+$ API Gateway request metrics (last 2 h, 5-min sum) ApiId=zkht2b4ib3
+-- Count
+2026-10-16T13:14:00+05:30	643.0
+-- 4xx
+2026-10-16T13:14:00+05:30	73.0
+-- 5xx
+2026-10-16T13:14:00+05:30	1.0
+
+$ Lambda invocations / errors / max duration per function (last 2 h)
+ExpensesFunction invocations=79.0 errors=0.0 max_duration_ms=3287.87
+BudgetsFunction invocations=28.0 errors=0.0 max_duration_ms=3184.6
+AnalyticsFunction invocations=26.0 errors=0.0 max_duration_ms=2127.0
+AnomaliesFunction invocations=48.0 errors=0.0 max_duration_ms=3133.48
+PlanningFunction invocations=25.0 errors=0.0 max_duration_ms=3235.96
+AssistantFunction invocations=6.0 errors=0.0 max_duration_ms=3366.71
+AccountFunction invocations=147.0 errors=1.0 max_duration_ms=3344.86
+ReceiptsFunction invocations=20.0 errors=0.0 max_duration_ms=14879.41
+WebFunction invocations=233.0 errors=0.0 max_duration_ms=94.49
+
+$ aws logs tail ReceiptsFunction (last 30 min, OCR requests + REPORT lines)
+2026-10-16T08:40:33 2026-10-16 08:40:33,892 INFO app.http GET /api/v1/receipts 200 13ms rid=d40415abdbd644ad
+2026-10-16T08:40:33 REPORT RequestId: a7cf80ea-0877-4978-8528-ffd6a364a2c1	Duration: 14.93 ms	Billed Duration: 15 ms	Memory Size: 1024 MB	Max Memory Used: 194 MB
+2026-10-16T08:42:42 2026-10-16 08:42:42,565 INFO app.http GET /api/v1/receipts/status 200 46ms rid=acfc6a6488d64ab7
+2026-10-16T08:42:42 REPORT RequestId: 70c8d24d-e35d-4025-8af9-f76ac38d09aa	Duration: 48.23 ms	Billed Duration: 49 ms	Memory Size: 1024 MB	Max Memory Used: 194 MB
+2026-10-16T08:42:43 2026-10-16 08:42:43,802 INFO app.http GET /api/v1/receipts 200 138ms rid=8c6dec5dbcfa46f6
+2026-10-16T08:42:43 REPORT RequestId: 27df01c0-bc6e-45f4-ab97-4ca03bb094aa	Duration: 1283.64 ms	Billed Duration: 2006 ms	Memory Size: 1024 MB	Max Memory Used: 140 MB	Init Duration: 722.22 ms
+2026-10-16T08:42:45 2026-10-16 08:42:45,772 INFO app.http POST /api/v1/receipts/upload-url 201 15ms rid=6dfd853c6c074bcd
+2026-10-16T08:42:45 REPORT RequestId: 3f564864-8c6b-4848-bd46-23702d9f1917	Duration: 18.13 ms	Billed Duration: 19 ms	Memory Size: 1024 MB	Max Memory Used: 140 MB
+2026-10-16T08:42:48 2026-10-16 08:42:48,703 INFO app.http POST /api/v1/receipts/9ebf07cde81e4f1d8b3460a77ab832bf/process 200 1889ms rid=3b366b1ab2994ae6
+2026-10-16T08:42:48 REPORT RequestId: 5402d1b3-0367-4c75-9ed2-97e929782afe	Duration: 1890.91 ms	Billed Duration: 1891 ms	Memory Size: 1024 MB	Max Memory Used: 193 MB
+2026-10-16T08:42:49 2026-10-16 08:42:49,056 INFO app.http GET /api/v1/receipts 200 13ms rid=48d4f011a86840fc
+2026-10-16T08:42:49 REPORT RequestId: d98b5aaa-b9a2-41ba-a597-3f9d08bfcc0d	Duration: 15.18 ms	Billed Duration: 16 ms	Memory Size: 1024 MB	Max Memory Used: 193 MB
+
+$ aws logs tail ExpensesFunction (last 30 min)
+2026-10-16T08:40:04 2026-10-16 08:40:04,575 INFO app.http POST /api/v1/expenses 201 94ms rid=ddc5850d6caa41ea
+2026-10-16T08:40:04 REPORT RequestId: 93cd11f0-5ded-42a2-90d9-412d17a42de9	Duration: 97.04 ms	Billed Duration: 98 ms	Memory Size: 512 MB	Max Memory Used: 151 MB
+2026-10-16T08:40:05 2026-10-16 08:40:05,166 INFO app.http GET /api/v1/expenses 200 17ms rid=bfa3712af77e4a1f
+2026-10-16T08:40:05 REPORT RequestId: a51572b0-4bc3-4dba-a6fa-733a09621f37	Duration: 26.00 ms	Billed Duration: 26 ms	Memory Size: 512 MB	Max Memory Used: 151 MB
+2026-10-16T08:42:20 2026-10-16 08:42:20,816 INFO app.http GET /api/v1/expenses 200 86ms rid=0588aef624904532
+2026-10-16T08:42:20 REPORT RequestId: 7d8caa3b-2b73-4e96-8e4c-2a255f2906d7	Duration: 90.08 ms	Billed Duration: 91 ms	Memory Size: 512 MB	Max Memory Used: 152 MB
+2026-10-16T08:42:25 2026-10-16 08:42:25,756 INFO app.http POST /api/v1/expenses 201 120ms rid=4a9a398a40774c94
+2026-10-16T08:42:25 REPORT RequestId: f08c6712-8ad7-4ca4-a134-654e15294e12	Duration: 122.84 ms	Billed Duration: 123 ms	Memory Size: 512 MB	Max Memory Used: 152 MB
+2026-10-16T08:42:26 2026-10-16 08:42:26,217 INFO app.http GET /api/v1/expenses 200 18ms rid=60d1bad2c6354b26
+2026-10-16T08:42:26 REPORT RequestId: 23b975b6-f44d-4339-8696-e5127d2212ab	Duration: 21.01 ms	Billed Duration: 22 ms	Memory Size: 512 MB	Max Memory Used: 152 MB
+
+$ aws logs tail AccountFunction (errors from the first deployment, before the packaging fix)
+2026-10-16T08:00:26 [ERROR] Runtime.ImportModuleError: Unable to import module 'app.handlers.account': cannot import name 'ArgsKwargs' from 'pydantic_core._pydantic_core' (unknown location)
+2026-10-16T08:00:26 INIT_REPORT Init Duration: 270.55 ms	Phase: init	Status: error	Error Type: Runtime.ImportModuleError

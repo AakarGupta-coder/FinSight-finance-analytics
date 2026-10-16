@@ -1,0 +1,272 @@
+{
+ "ranAt": "2026-10-16T09:55:47.633Z",
+ "web": "https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com",
+ "checks": [
+  {
+   "id": "UI-01",
+   "what": "Live landing page renders",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-22",
+   "what": "Footer shows \"Created by Aakar Gupta\"",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-23",
+   "what": "About the author dialog opens from the \"i\" button with accurate content",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-24",
+   "what": "About dialog states CloudFront is planned, not deployed",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-25",
+   "what": "Escape closes the About dialog",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-26",
+   "what": "Landing + About dialog fit at 390px",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-27",
+   "what": "About dialog fits the mobile viewport",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-02",
+   "what": "Registration page renders",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-03",
+   "what": "Cognito sign-in via the web app → dashboard",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-04",
+   "what": "Profile chip shows the ID-token name, not a UUID",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-05",
+   "what": "Transactions list loads from DynamoDB",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-06",
+   "what": "Expense created through the UI and listed",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-07",
+   "what": "Budgets page with live utilization",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-08",
+   "what": "Receipt uploaded to S3 from the browser and read by OCR Lambda",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-09",
+   "what": "Receipt preview image rendered",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-10",
+   "what": "Assistant answers from live data",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-11",
+   "what": "Savings goal shown",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-12",
+   "what": "Profile shows Cognito account",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-13",
+   "what": "In-app 404 route",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-14",
+   "what": "Theme switch to light",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-15",
+   "what": "Light theme persists after reload",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-16",
+   "what": "No horizontal overflow at 390px",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-17",
+   "what": "Sign out returns to login and clears the session",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-18",
+   "what": "Protected route redirects to login after sign-out",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "UI-19",
+   "what": "No browser console errors during the run",
+   "status": "PASS",
+   "detail": "0 error(s)"
+  },
+  {
+   "id": "UI-20",
+   "what": "No failed network requests (except expected Cognito sign-out)",
+   "status": "PASS",
+   "detail": "[]"
+  },
+  {
+   "id": "UI-21",
+   "what": "No mixed content (all requests https)",
+   "status": "PASS",
+   "detail": ""
+  }
+ ],
+ "shots": [
+  {
+   "name": "live_landing.png",
+   "at": "2026-10-16T09:54:09.413Z"
+  },
+  {
+   "name": "live_landing_footer_credit.png",
+   "at": "2026-10-16T09:54:09.949Z"
+  },
+  {
+   "name": "live_about_author_dark.png",
+   "at": "2026-10-16T09:54:10.719Z"
+  },
+  {
+   "name": "live_about_author_light.png",
+   "at": "2026-10-16T09:54:14.911Z"
+  },
+  {
+   "name": "live_about_author_mobile.png",
+   "at": "2026-10-16T09:54:18.782Z"
+  },
+  {
+   "name": "live_registration.png",
+   "at": "2026-10-16T09:54:22.327Z"
+  },
+  {
+   "name": "live_login.png",
+   "at": "2026-10-16T09:54:25.618Z"
+  },
+  {
+   "name": "live_dashboard.png",
+   "at": "2026-10-16T09:54:37.765Z"
+  },
+  {
+   "name": "live_expense_management.png",
+   "at": "2026-10-16T09:54:40.381Z"
+  },
+  {
+   "name": "live_expense_creation_form.png",
+   "at": "2026-10-16T09:54:43.313Z"
+  },
+  {
+   "name": "live_expense_workflow.png",
+   "at": "2026-10-16T09:54:44.484Z"
+  },
+  {
+   "name": "live_budget_management.png",
+   "at": "2026-10-16T09:54:51.641Z"
+  },
+  {
+   "name": "live_analytics.png",
+   "at": "2026-10-16T09:54:54.838Z"
+  },
+  {
+   "name": "live_financial_insights.png",
+   "at": "2026-10-16T09:54:57.465Z"
+  },
+  {
+   "name": "live_anomaly_detection.png",
+   "at": "2026-10-16T09:55:00.107Z"
+  },
+  {
+   "name": "live_receipt_processing.png",
+   "at": "2026-10-16T09:55:03.907Z"
+  },
+  {
+   "name": "live_receipt_review.png",
+   "at": "2026-10-16T09:55:07.249Z"
+  },
+  {
+   "name": "live_whatif_simulator.png",
+   "at": "2026-10-16T09:55:10.428Z"
+  },
+  {
+   "name": "live_finance_assistant.png",
+   "at": "2026-10-16T09:55:14.081Z"
+  },
+  {
+   "name": "live_savings_goals.png",
+   "at": "2026-10-16T09:55:16.698Z"
+  },
+  {
+   "name": "live_profile.png",
+   "at": "2026-10-16T09:55:19.346Z"
+  },
+  {
+   "name": "live_settings.png",
+   "at": "2026-10-16T09:55:22.516Z"
+  },
+  {
+   "name": "live_dashboard_light.png",
+   "at": "2026-10-16T09:55:31.292Z"
+  },
+  {
+   "name": "live_mobile_dashboard.png",
+   "at": "2026-10-16T09:55:40.091Z"
+  },
+  {
+   "name": "live_mobile_navigation.png",
+   "at": "2026-10-16T09:55:40.890Z"
+  }
+ ],
+ "consoleErrors": [],
+ "failedRequests": []
+}

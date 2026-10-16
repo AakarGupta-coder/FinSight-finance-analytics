@@ -1,0 +1,300 @@
+{
+ "api": {
+  "ResponseMetadata": {
+   "RequestId": "c9c944da-1c1b-450c-9333-bd8949e93a92",
+   "HTTPStatusCode": 200,
+   "HTTPHeaders": {
+    "date": "Fri, 16 Oct 2026 13:37:51 GMT",
+    "content-type": "application/json",
+    "content-length": "748",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "c9c944da-1c1b-450c-9333-bd8949e93a92",
+    "access-control-allow-origin": "*",
+    "x-amz-apigw-id": "FVtLfGLrhcwEW3w=",
+    "access-control-expose-headers": "x-amzn-RequestId,x-amzn-ErrorType,x-amzn-ErrorMessage,Date",
+    "x-amzn-trace-id": "Root=1-6ad228af-09c86bbe788efc151939c272"
+   },
+   "RetryAttempts": 0
+  },
+  "ApiEndpoint": "https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com",
+  "ApiId": "zkht2b4ib3",
+  "ApiKeySelectionExpression": "$request.header.x-api-key",
+  "CreatedDate": "2026-10-16 07:59:45+00:00",
+  "DisableExecuteApiEndpoint": false,
+  "IpAddressType": "ipv4",
+  "Name": "finance-intelligence-prod",
+  "ProtocolType": "HTTP",
+  "RouteSelectionExpression": "$request.method $request.path",
+  "Tags": {
+   "aws:cloudformation:stack-name": "finance-intelligence-prod",
+   "aws:cloudformation:logical-id": "HttpApi",
+   "aws:cloudformation:stack-id": "arn:aws:cloudformation:ap-south-1:9672****3724:stack/finance-intelligence-prod/56fa3b20-c937-11f1-819e-0affea31666f",
+   "httpapi:createdBy": "SAM"
+  },
+  "Version": "1.0"
+ },
+ "routes": [
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "1iinx7d",
+   "RouteKey": "ANY /api/v1/budgets",
+   "Target": "integrations/uuyfxlj"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "2v6kf8t",
+   "RouteKey": "POST /api/v1/simulations",
+   "Target": "integrations/yms4ohm"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "54t6f2v",
+   "RouteKey": "GET /api/v1/dashboard",
+   "Target": "integrations/1y6xyyl"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "6hdw221",
+   "RouteKey": "GET /api/v1/me",
+   "Target": "integrations/bhl5b6r"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "6v2lb8f",
+   "RouteKey": "GET /api/v1/analytics",
+   "Target": "integrations/ad9b1wo"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "NONE",
+   "RequestParameters": {},
+   "RouteId": "7o9j70t",
+   "RouteKey": "GET /{proxy+}",
+   "Target": "integrations/ot7r8ht"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "8y9r86d",
+   "RouteKey": "POST /api/v1/categories",
+   "Target": "integrations/k0gavjo"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "a4maqbd",
+   "RouteKey": "ANY /api/v1/expenses",
+   "Target": "integrations/3h89doc"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "akh50an",
+   "RouteKey": "POST /api/v1/simulations/{proxy+}",
+   "Target": "integrations/tp4uwor"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "NONE",
+   "RequestParameters": {},
+   "RouteId": "chz3hu0",
+   "RouteKey": "GET /",
+   "Target": "integrations/n3l40ge"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "d88t2is",
+   "RouteKey": "PUT /api/v1/preferences",
+   "Target": "integrations/20hhw1d"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "ej5ftm1",
+   "RouteKey": "ANY /api/v1/demo-data",
+   "Target": "integrations/wv99fpn"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "gk6jj51",
+   "RouteKey": "ANY /api/v1/anomalies",
+   "Target": "integrations/4ok9f0m"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "hjgs3bg",
+   "RouteKey": "ANY /api/v1/receipts/{proxy+}",
+   "Target": "integrations/m59oc3f"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "NONE",
+   "RequestParameters": {},
+   "RouteId": "kly1grh",
+   "RouteKey": "GET /api/v1/config",
+   "Target": "integrations/nhkmzpb"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "krqlwon",
+   "RouteKey": "DELETE /api/v1/categories/{id}",
+   "Target": "integrations/bicq80k"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "o3uro6d",
+   "RouteKey": "ANY /api/v1/receipts",
+   "Target": "integrations/bm64r6i"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "o6ed2be",
+   "RouteKey": "ANY /api/v1/expenses/{proxy+}",
+   "Target": "integrations/66f6fpf"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "ozsmxzt",
+   "RouteKey": "ANY /api/v1/budgets/{proxy+}",
+   "Target": "integrations/x9rfrft"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "qzdnie6",
+   "RouteKey": "GET /api/v1/reference",
+   "Target": "integrations/cno9gu9"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "NONE",
+   "RequestParameters": {},
+   "RouteId": "r73cwmf",
+   "RouteKey": "GET /api/v1/health",
+   "Target": "integrations/da4girr"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "s6mzeu4",
+   "RouteKey": "GET /api/v1/insights",
+   "Target": "integrations/nimawoi"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "u4jqakn",
+   "RouteKey": "ANY /api/v1/anomalies/{proxy+}",
+   "Target": "integrations/ydwejtb"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "vt9yacl",
+   "RouteKey": "POST /api/v1/assistant/query",
+   "Target": "integrations/wuwy35r"
+  },
+  {
+   "ApiKeyRequired": false,
+   "AuthorizationScopes": [],
+   "AuthorizationType": "JWT",
+   "AuthorizerId": "l485dm",
+   "RequestParameters": {},
+   "RouteId": "xch8r0k",
+   "RouteKey": "ANY /api/v1/goals/{proxy+}",
+   "Target": "integrations/iemae91"
+  }
+ ],
+ "authorizers": [
+  {
+   "AuthorizerId": "l485dm",
+   "AuthorizerType": "JWT",
+   "IdentitySource": [
+    "$request.header.Authorization"
+   ],
+   "JwtConfiguration": {
+    "Audience": [
+     "3fa9mi5ouhkcbqtk6o8c5e3n9e"
+    ],
+    "Issuer": "https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_qp3zLx5jI"
+   },
+   "Name": "CognitoJwt"
+  }
+ ]
+}
