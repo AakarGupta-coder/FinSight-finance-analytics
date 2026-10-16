@@ -1,28 +1,27 @@
+# FinSight: Cloud-Based Personal Finance Intelligence & Expense Analytics Platform
+
 <div align="center">
 
-<img src="frontend/public/favicon.svg" alt="FinSight logo" width="72" height="72">
+<img src="docs/reports/report_assets/branding/finsight_banner.png" alt="FinSight Banner" width="800">
 
-# FinSight
+<br/>
 
-**Cloud-Based Personal Finance Intelligence & Expense Analytics Platform**
+[![Status: Active](https://img.shields.io/badge/STATUS-ACTIVE-10B981?style=for-the-badge&labelColor=18181B)](https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com)
+[![Architecture: Serverless](https://img.shields.io/badge/ARCHITECTURE-SERVERLESS-0284C7?style=for-the-badge&labelColor=18181B)](#system-architecture)
+[![Frontend: React 19](https://img.shields.io/badge/FRONTEND-REACT_19-61DAFB?style=for-the-badge&logo=react&logoColor=black&labelColor=18181B)](#technology-stack)
+[![Backend: FastAPI](https://img.shields.io/badge/BACKEND-FASTAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white&labelColor=18181B)](#technology-stack)
+[![Cloud: AWS SAM](https://img.shields.io/badge/CLOUD-AWS_SAM-FF9900?style=for-the-badge&logo=amazonwebservices&logoColor=white&labelColor=18181B)](#aws-services)
+[![Database: DynamoDB](https://img.shields.io/badge/DATABASE-DYNAMODB-4053D6?style=for-the-badge&logo=amazondynamodb&logoColor=white&labelColor=18181B)](#data-model)
 
-*Understand Your Spending. Make Smarter Financial Decisions.*
+<br/>
 
-React 19 · TypeScript · FastAPI · Amazon API Gateway · AWS Lambda · Amazon DynamoDB · Amazon S3 · Amazon Cognito · Amazon CloudWatch · AWS SAM
+Cloud-based personal finance intelligence platform featuring exact integer-arithmetic expense tracking, automated budget projection alerts, robust statistical anomaly detection, smart OCR receipt scanning with human-in-the-loop review, What-If scenario simulations, and a deterministic conversational finance assistant.
 
-**Author:** Aakar Gupta · Vellore Institute of Technology, Chennai
+<br/>
+
+**Developed by Aakar Gupta**
 
 </div>
-
-FinSight is a web application for recording expenses, managing budgets and savings goals, and getting **evidence-based**
-financial insights. Every number it shows is calculated from the user's own records with transparent rules; every automated
-result (insight, anomaly flag, OCR extraction) shows how it was derived and can be reviewed. No paid AI service is used at
-runtime. The application is deployed serverlessly on AWS in the Mumbai region (`ap-south-1`).
-
-> **Status (verified 2026-10-16):** live at **<https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com>** — stack
-> `finance-intelligence-prod`, `UPDATE_COMPLETE`. The latest live runs passed **64/64** API, authentication, storage and OCR
-> checks and **27/27** browser checks. The web app is served through **API Gateway + Lambda**: CloudFront is in the template
-> but **not deployed**, because the new AWS account must first be verified by AWS Support for CloudFront.
 
 ---
 
@@ -50,6 +49,8 @@ runtime. The application is deployed serverlessly on AWS in the Mumbai region (`
 ---
 
 ## Overview
+
+> **Status (verified 2026-10-16):** Live at **<https://zkht2b4ib3.execute-api.ap-south-1.amazonaws.com>** — stack `finance-intelligence-prod`, `UPDATE_COMPLETE`. The latest live runs passed **64/64** API, authentication, storage and OCR checks and **27/27** browser checks. The web app is served through **API Gateway + Lambda**: CloudFront is in the template but **not deployed**, pending account verification by AWS Support.
 
 **The problem.** People record spending in scattered places (payment apps, notes, paper receipts) and rarely see *why* their
 money moves. Basic trackers list transactions but do not explain trends, warn before a budget is exhausted, or connect
