@@ -1,10 +1,11 @@
 # FinSight — Technical Documentation
 
 **FinSight — Cloud-Based Personal Finance Intelligence & Expense Analytics Platform**
-Developed by Aakar Gupta · Vellore Institute of Technology, Chennai.
+Aakar Gupta (24BRS1321), Vellore Institute of Technology, Chennai.
 
-This is the detailed technical reference. Start with the [README](../README.md) for an overview, screenshots and quick start.
-Facts in this document were checked against the repository and the live AWS stack on 2026-10-16. Account IDs appear only masked (`9672****3724`).
+This is the detailed technical reference. Start with the [README](../../../README.md) for an overview, screenshots and quick start;
+use [HANDOVER.md](../../handover/HANDOVER.md) for the current status and remaining actions. Facts in this document were checked against the
+repository and the live AWS stack on 2026-10-16. Account IDs appear only masked (`9672****3724`).
 
 ## Contents
 
@@ -453,7 +454,7 @@ Outputs: `ApiUrl`, `WebUrl`, `FrontendHosting`, `ReceiptBucketName`, `TableName`
 
 ## 7. Local development
 
-Prerequisites, installation and run commands are in the README ([Local setup](../README.md#local-setup)). Summary:
+Prerequisites, installation and run commands are in the README ([Local setup](../../../README.md#local-setup)). Summary:
 
 ```powershell
 # backend (Windows; use source .venv/bin/activate on macOS/Linux)
@@ -1309,9 +1310,9 @@ Bedrock, SNS. Cost Explorer API calls cost US$0.01 each, so they are not scripte
 | `frontend/src/pages/`, `components/`, `lib/` | 16 routes, UI primitives, charts, layout, About dialog; API client, auth, formatting, motion |
 | `infra/template.yaml`, `samconfig.toml` | SAM template and deployment configuration |
 | `infra/prepare_build.py`, `deploy_frontend.py`, `live_test.py`, `web/handler.py`, `budgets/` | build staging, CloudFront-mode frontend publish, live test suite, static SPA handler, Budgets JSON |
-| `docs/evidence/` | screenshots and test evidence, index in [SCREENSHOT_INDEX.md](evidence/SCREENSHOT_INDEX.md); capture scripts in `evidence/capture/` |
-| `docs/assets/` | architecture diagrams, charts, UI screenshots, masked Console copies, and branding banner |
-| `docs/AWS_LIVE_TEST_RESULTS.md` | full results and evidence for 64/64 live AWS API checks and 27/27 live browser checks |
+| `docs/evidence/` | screenshots and test evidence, index in [SCREENSHOT_INDEX.md](../../evidence/SCREENSHOT_INDEX.md); capture scripts in `evidence/capture/` |
+| `docs/reports/report_assets/` | report figures (screens, diagrams, charts, masked Console copies, live screenshots), generators and the presentation builder; index in [REPORT_ASSET_INDEX.md](../REPORT_ASSET_INDEX.md) |
+| `docs/reports/PROJECT_REPORT_FINAL.docx` / `docs/pdfs/PROJECT_REPORT_FINAL.pdf`, `docs/presentations/PROJECT_PRESENTATION_FINAL.pptx` / `docs/pdfs/PROJECT_PRESENTATION_FINAL.pdf` | final report and presentation |
 
 ---
 
@@ -1411,7 +1412,7 @@ Emerald lighting: `.ambient` (corner glow — featured card, max one per screen)
 - **2026-10-16 · S11b Report revision** — the report was regenerated from its generator scripts for the real deployment: Chapters 8–9 rewritten with live results, the illustrations replaced by AWS resource views rendered from live API responses, diagrams relabelled as deployed.
 - **2026-10-16 · S12 Final features and fixes** — About-the-author dialog and landing credit; backend Cognito `GetUser` revocation check (AUTH-07 passes); stack update 3; live re-test 64/64 + 27/27; local 131 backend and 20 frontend tests; actual-architecture, security and cost reviews; 9-slide deck; viva cheat sheet and guide. Report updated (94 pages).
 - **2026-10-16 · S12b Console screenshots** — the owner captured the AWS Console; 13 masked copies (browser bar, account menu and taskbar removed, account IDs blacked out) were added to the report. The unmasked originals are git-ignored.
-- **2026-10-16 · Final consolidation & public portfolio release** — Repository cleaned for public portfolio release; MIT license added; academic submission deliverables removed; documentation and assets streamlined.
+- **2026-10-16 · Final consolidation** — Markdown documentation consolidated into the README, this document, HANDOVER, AWS_VIVA_GUIDE and the validation files; 11-slide presentation on the Margie's Travel layout; duplicate AWS views removed from the report; workspace cleanup (see WORKSPACE_CLEANUP_REPORT.md).
 
 ### B.1 Defects found and fixed before and during deployment
 

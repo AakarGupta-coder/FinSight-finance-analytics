@@ -2,7 +2,7 @@
 
 # FinSight — Cloud-Based Personal Finance Intelligence & Expense Analytics Platform
 
-<img src="docs/assets/branding/finsight_banner.png" alt="FinSight Banner" width="800">
+<img src="docs/reports/report_assets/branding/finsight_banner.png" alt="FinSight Banner" width="800">
 
 <br/>
 
@@ -96,7 +96,7 @@ The full, indexed set — including local captures, animation frames, AWS eviden
 ## Key features
 
 All features below are implemented and were verified locally and on the live deployment (evidence IDs in
-[docs/AWS_LIVE_TEST_RESULTS.md](docs/AWS_LIVE_TEST_RESULTS.md)).
+[docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md](docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md)).
 
 | Feature | What it does |
 |---|---|
@@ -161,9 +161,9 @@ flowchart LR
 - The backend is layered: **routes** (HTTP, auth context) → **services** (business logic, storage-independent) →
   **repository** (SQLite or DynamoDB). Each Lambda builds only its own route group, so it gets only the IAM permissions it needs.
 - A rendered version of this diagram for print use is
-  [docs/assets/diagrams/fig_aws_architecture.svg](docs/assets/diagrams/fig_aws_architecture.svg).
+  [docs/reports/report_assets/diagrams/fig_aws_architecture.svg](docs/reports/report_assets/diagrams/fig_aws_architecture.svg).
 
-Details: [docs/PROJECT_DOCUMENTATION.md §5–6](docs/PROJECT_DOCUMENTATION.md#5-application-architecture).
+Details: [docs/reports/markdown/PROJECT_DOCUMENTATION.md §5–6](docs/reports/markdown/PROJECT_DOCUMENTATION.md#5-application-architecture).
 
 ## Application workflow
 
@@ -205,7 +205,7 @@ user's partition; locally SQLite stores the same records with `WHERE user_id = ?
 | Receipt | `RECEIPT#<id>` | S3 key, status, extracted fields, linked expense | image in the private bucket |
 
 Insights are computed on request and never stored. No `Scan` is used, and the IAM policy does not grant it. Full design:
-[docs/PROJECT_DOCUMENTATION.md §11](docs/PROJECT_DOCUMENTATION.md#11-database-and-data-model).
+[docs/reports/markdown/PROJECT_DOCUMENTATION.md §11](docs/reports/markdown/PROJECT_DOCUMENTATION.md#11-database-and-data-model).
 
 ## AWS services
 
@@ -240,7 +240,7 @@ Insights are computed on request and never stored. No `Scan` is used, and the IA
 
 **Limitations:** revocation takes effect within 15 s and fails open if Cognito is unreachable; no Content-Security-Policy,
 WAF or MFA yet; deployments used the root account (MFA on, no access keys). The full threat model and the review of the
-deployed system are in [docs/PROJECT_DOCUMENTATION.md §16](docs/PROJECT_DOCUMENTATION.md#16-security).
+deployed system are in [docs/reports/markdown/PROJECT_DOCUMENTATION.md §16](docs/reports/markdown/PROJECT_DOCUMENTATION.md#16-security).
 
 ## Local setup
 
@@ -298,7 +298,7 @@ The frontend needs no `.env` locally.
 **Troubleshooting.** “FinSight is temporarily unavailable” means the backend is not reachable — start it on port 8000, or
 run it on another port and start Vite with `API_PROXY_TARGET=http://127.0.0.1:<port>`. If the receipt scanner says OCR is
 unavailable, install Tesseract or set `TESSERACT_CMD`. More cases:
-[docs/PROJECT_DOCUMENTATION.md §18](docs/PROJECT_DOCUMENTATION.md#18-troubleshooting).
+[docs/reports/markdown/PROJECT_DOCUMENTATION.md §18](docs/reports/markdown/PROJECT_DOCUMENTATION.md#18-troubleshooting).
 
 ## Testing
 
@@ -312,8 +312,8 @@ unavailable, install Tesseract or set `TESSERACT_CMD`. More cases:
 | Live browser (headless Chrome on the live URL) | `node docs/evidence/capture/live.mjs <live URL>` | **27/27**, 0 console errors, 0 failed requests |
 
 No code-coverage percentage is claimed. Test map, live-test details and what was not tested:
-[docs/PROJECT_DOCUMENTATION.md §13](docs/PROJECT_DOCUMENTATION.md#13-testing) and
-[docs/AWS_LIVE_TEST_RESULTS.md](docs/AWS_LIVE_TEST_RESULTS.md).
+[docs/reports/markdown/PROJECT_DOCUMENTATION.md §13](docs/reports/markdown/PROJECT_DOCUMENTATION.md#13-testing) and
+[docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md](docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md).
 
 ## AWS deployment
 
@@ -347,7 +347,7 @@ node docs/evidence/capture/live.mjs https://zkht2b4ib3.execute-api.ap-south-1.am
   permanently deletes all data.
 
 Full procedure, permissions, rollback and deployment history:
-[docs/PROJECT_DOCUMENTATION.md §14](docs/PROJECT_DOCUMENTATION.md#14-aws-deployment).
+[docs/reports/markdown/PROJECT_DOCUMENTATION.md §14](docs/reports/markdown/PROJECT_DOCUMENTATION.md#14-aws-deployment).
 
 ## Cost considerations
 
@@ -360,7 +360,7 @@ On 2026-10-16 the account was on the AWS **Free plan** with US$159.91 of credits
 console showed US$0.09 of credits used (estimated). Assuming demonstration use (≤ 5,000 API requests, ≤ 50 OCR runs and
 < 10 MB of data per month), the estimate is **about US$0.05–0.10 per month**. This is an estimate, not a guarantee: real cost
 depends on traffic, compute, storage, logs and ap-south-1 prices. AWS Budgets alerts notify; they do not cap spending.
-Details: [docs/PROJECT_DOCUMENTATION.md §17](docs/PROJECT_DOCUMENTATION.md#17-cost).
+Details: [docs/reports/markdown/PROJECT_DOCUMENTATION.md §17](docs/reports/markdown/PROJECT_DOCUMENTATION.md#17-cost).
 
 ## Known limitations
 
@@ -401,7 +401,7 @@ Details: [docs/PROJECT_DOCUMENTATION.md §17](docs/PROJECT_DOCUMENTATION.md#17-c
 │   ├── live_test.py                  live API / Cognito / S3 / OCR test suite
 │   ├── web/handler.py                WebFunction (static SPA server)
 │   └── budgets/                      AWS Budgets alert definitions
-├── docs/                             technical documentation, live test results, evidence, and visual assets
+├── docs/                             report, presentation, documentation, evidence and report assets
 ├── LICENSE                           MIT License
 ├── .env.example                      configuration placeholders
 └── README.md
@@ -409,16 +409,22 @@ Details: [docs/PROJECT_DOCUMENTATION.md §17](docs/PROJECT_DOCUMENTATION.md#17-c
 
 ## Documentation and evidence
 
-| Document / Directory | Contents |
+| Document | Contents |
 |---|---|
-| [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md) | Comprehensive technical reference: architecture, AWS services, API specification, DynamoDB single-table data model, OCR engine, security controls, cost review, troubleshooting, testing, and deployment |
-| [docs/AWS_LIVE_TEST_RESULTS.md](docs/AWS_LIVE_TEST_RESULTS.md) | Complete verification records for 64/64 live AWS API checks and 27/27 browser checks on the live deployment |
-| [docs/evidence/SCREENSHOT_INDEX.md](docs/evidence/SCREENSHOT_INDEX.md) | Index of all live application screenshots, architecture diagrams, and test evidence |
-| [docs/assets/](docs/assets/) | Visual assets: architecture diagrams (SVG/PNG), analytical charts, application UI screens, and masked AWS Management Console evidence |
+| [docs/reports/markdown/PROJECT_DOCUMENTATION.md](docs/reports/markdown/PROJECT_DOCUMENTATION.md) | Full technical documentation: architecture, AWS, API, data model, OCR, testing, deployment, security review, cost review, troubleshooting, history |
+| [docs/handover/HANDOVER.md](docs/handover/HANDOVER.md) | Current status, run commands, remaining manual actions |
+| [docs/viva/AWS_VIVA_GUIDE.md](docs/viva/AWS_VIVA_GUIDE.md) ([PDF](docs/pdfs/AWS_VIVA_GUIDE.pdf)) | AWS syllabus cheat sheet (8 modules) and 150 project viva questions with answers |
+| [docs/pdfs/PROJECT_REPORT_FINAL.pdf](docs/pdfs/PROJECT_REPORT_FINAL.pdf) ([DOCX](docs/reports/PROJECT_REPORT_FINAL.docx)) | Final academic report |
+| [docs/pdfs/PROJECT_PRESENTATION_FINAL.pdf](docs/pdfs/PROJECT_PRESENTATION_FINAL.pdf) ([PPTX](docs/presentations/PROJECT_PRESENTATION_FINAL.pptx)) | Final presentation |
+| [docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md](docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md) | Every live check with expected and actual results |
+| [docs/evidence/SCREENSHOT_INDEX.md](docs/evidence/SCREENSHOT_INDEX.md) | Index of all screenshots and test evidence |
+| [docs/reports/REPORT_ASSET_INDEX.md](docs/reports/REPORT_ASSET_INDEX.md) | Every figure used in the report and its source |
+| [docs/reports/markdown/FINAL_VALIDATION.md](docs/reports/markdown/FINAL_VALIDATION.md) | Final validation summary (links to report and presentation validation) |
+| [docs/reports/markdown/WORKSPACE_CLEANUP_REPORT.md](docs/reports/markdown/WORKSPACE_CLEANUP_REPORT.md) | What was removed, consolidated and kept |
 
 ## Author and project information
 
-**Developed by Aakar Gupta** · Vellore Institute of Technology, Chennai
+**Developed by Aakar Gupta (24BRS1321)** · Vellore Institute of Technology, Chennai
 
 **Project:** FinSight — Cloud-Based Personal Finance Intelligence & Expense Analytics Platform
 
