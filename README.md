@@ -19,7 +19,7 @@ Cloud-based personal finance intelligence platform featuring exact integer-arith
 
 <br/>
 
-**Developed by Aakar Gupta** · *VIT Chennai*
+**Developed by Aakar Gupta**
 
 </div>
 
@@ -401,7 +401,7 @@ Details: [docs/reports/markdown/PROJECT_DOCUMENTATION.md §17](docs/reports/mark
 │   ├── live_test.py                  live API / Cognito / S3 / OCR test suite
 │   ├── web/handler.py                WebFunction (static SPA server)
 │   └── budgets/                      AWS Budgets alert definitions
-├── docs/                             report, presentation, documentation, evidence and report assets
+├── docs/                             technical documentation, architecture, and test evidence
 ├── LICENSE                           MIT License
 ├── .env.example                      configuration placeholders
 └── README.md
@@ -413,18 +413,12 @@ Details: [docs/reports/markdown/PROJECT_DOCUMENTATION.md §17](docs/reports/mark
 |---|---|
 | [docs/reports/markdown/PROJECT_DOCUMENTATION.md](docs/reports/markdown/PROJECT_DOCUMENTATION.md) | Full technical documentation: architecture, AWS, API, data model, OCR, testing, deployment, security review, cost review, troubleshooting, history |
 | [docs/handover/HANDOVER.md](docs/handover/HANDOVER.md) | Current status, run commands, remaining manual actions |
-| [docs/viva/AWS_VIVA_GUIDE.md](docs/viva/AWS_VIVA_GUIDE.md) ([PDF](docs/pdfs/AWS_VIVA_GUIDE.pdf)) | AWS syllabus cheat sheet (8 modules) and 150 project viva questions with answers |
-| [docs/pdfs/PROJECT_REPORT_FINAL.pdf](docs/pdfs/PROJECT_REPORT_FINAL.pdf) ([DOCX](docs/reports/PROJECT_REPORT_FINAL.docx)) | Final academic report |
-| [docs/pdfs/PROJECT_PRESENTATION_FINAL.pdf](docs/pdfs/PROJECT_PRESENTATION_FINAL.pdf) ([PPTX](docs/presentations/PROJECT_PRESENTATION_FINAL.pptx)) | Final presentation |
 | [docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md](docs/reports/markdown/AWS_LIVE_TEST_RESULTS.md) | Every live check with expected and actual results |
 | [docs/evidence/SCREENSHOT_INDEX.md](docs/evidence/SCREENSHOT_INDEX.md) | Index of all screenshots and test evidence |
-| [docs/reports/REPORT_ASSET_INDEX.md](docs/reports/REPORT_ASSET_INDEX.md) | Every figure used in the report and its source |
-| [docs/reports/markdown/FINAL_VALIDATION.md](docs/reports/markdown/FINAL_VALIDATION.md) | Final validation summary (links to report and presentation validation) |
-| [docs/reports/markdown/WORKSPACE_CLEANUP_REPORT.md](docs/reports/markdown/WORKSPACE_CLEANUP_REPORT.md) | What was removed, consolidated and kept |
 
 ## Author and project information
 
-**Developed by Aakar Gupta (24BRS1321)** · Vellore Institute of Technology, Chennai
+**Developed by Aakar Gupta**
 
 **Project:** FinSight — Cloud-Based Personal Finance Intelligence & Expense Analytics Platform
 

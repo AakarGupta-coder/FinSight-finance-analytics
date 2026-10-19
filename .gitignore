@@ -45,3 +45,14 @@ infra/build/
 
 # Owner AWS Console captures: unmasked originals (full account ID). Masked copies live in docs/assets/aws_console/.
 docs/evidence/manual/aws-console/Screenshot*.png
+
+# Academic deliverables, reports, presentations, and viva materials
+docs/pdfs/
+*.pdf
+*.docx
+*.pptx
+docs/viva/
+docs/presentations/
+docs/reports/PROJECT_REPORT_FINAL.docx
+docs/reports/report_assets/branding/vit_chennai_logo.png
+
